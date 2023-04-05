@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.14</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+
+    <groupId>com.info_center</groupId>
+    <artifactId>info-center-server</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>Info Center Server</name>
+
+    <properties>
+        <java.version>17</java.version>
+        <sqlite-jdbc.version>3.39.3.0</sqlite-jdbc.version>
+    </properties>
+
+    <dependencies>
+        <!-- 提供了一个基础的 Spring Boot Web 应用程序的依赖集合，包括 Spring MVC、Spring Web、Tomcat 等模块。-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- 方便地搭建一个 JPA 数据库访问层，同时也能够自动集成 Spring Data JPA 以及 Hibernate 等流行的 ORM 框架，从而更加简化数据持久化层的开发工作。-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <!-- 方便地在 Spring Boot 应用程序中使用 Java 标准库（JSR-380）中定义的 Bean Validation API，来对请求参数、响应结果等进行校验和验证。-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <!--方便地在 Spring Boot 应用程序中集成安全认证和授权功能。-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
