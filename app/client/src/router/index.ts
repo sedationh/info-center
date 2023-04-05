@@ -1,23 +1,62 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+const routes = [
+  {
+    name: '登录',
+    path: '/login',
+    component: () => import('../views/Login.vue')
+  },
+  {
+    name: '首页',
+    path: '/index',
+    component: () => import('../views/Index.vue'),
+    children: [
+      {
+        name: '博客管理',
+        path: '/blog',
+        component: () => import('../views/Blog.vue')
+      },
+      {
+        name: '创建文章',
+        path: '/publish',
+        component: () => import('../views/Publish.vue')
+      },
+      {
+        name: '分类管理',
+        path: '/classify',
+        component: () => import('../views/Classify.vue')
+      },
+      {
+        name: '专题管理',
+        path: '/specialTopic',
+        component: () => import('../views/SpecialTopic.vue')
+      },
+      {
+        name: '个人信息设置',
+        path: '/myInfo',
+        component: () => import('../views/UserInfo.vue')
+      },
+      {
+        name: '成员管理',
+        path: '/member',
+        component: () => import('../views/Member.vue')
+      },
+      {
+        name: '系统设置',
+        path: '/system',
+        component: () => import('../views/System.vue')
+      },
+      {
+        name: '回收站',
+        path: '/retrieve',
+        component: () => import('../views/Retrieve.vue')
+      }
+    ]
+  }
+]
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    }
-  ]
+  routes,
+  history: createWebHistory()
 })
 
 export default router
