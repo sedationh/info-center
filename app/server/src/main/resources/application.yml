@@ -1,0 +1,19 @@
+server:
+  port: 4000
+
+spring:
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:${info-center.dataDir:}db.sqlite?date_class=TEXT
+
+
+  jpa:
+    database-platform: com.info_center.server.data.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+info-center:
+  jwtSecret: MTI2ZTc1NzAtMjJlMy00MmVlLTkwYmQtOTVjNGM4ZTRhN2YzMTI2ZTc1NzAtMjJlMy00MmVlLTkwYmQtOTVjNGM4ZTRhN2Yz
+  jwtExpirationDays: 365
+  connectorFetchCorePoolSize: 3

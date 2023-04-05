@@ -51,7 +51,6 @@ obj/
 *.pem
 
 # misc
-*.yml
 *.pdf
 *.war
 *.jar
