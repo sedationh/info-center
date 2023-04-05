@@ -1,0 +1,100 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Output directories
+dist/
+out/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+
+# Cache files
+*.log
+*.sqlite
+*.codekit-cache
+*.sass-cache
+*.scssc
+
+# Build results
+build/
+[Dd]ebug/
+obj/
+
+# NuGet
+*.nupkg
+*.pem
+
+# misc
+*.yml
+*.pdf
+*.war
+*.jar
+*.zip
+*.gz
+
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/renderer/.next/
+/renderer/out/
+
+# production
+/main
+/dist
+
+.idea/
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# vercel
+.vercel
+
+db.sqlite*
