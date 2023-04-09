@@ -67,12 +67,9 @@
   </div>
 </template>
 <script setup lang="ts">
-import Create from '../components/Create/Create.vue'
 import { reactive, ref } from 'vue'
-import { ElMessage, ElMessageBox } from 'element-plus'
 import { useRouter } from 'vue-router'
-import { data } from '../data/blogList.js'
-import { hasLogin } from '@/api'
+import { data } from '../data/blogList'
 const router = useRouter()
 const obj = reactive({
   title: '新增文章',
@@ -83,7 +80,7 @@ let title = ref('')
 let status = ref('')
 let type = ref('')
 
-hasLogin()
+// hasLogin()
 
 let list = ref(data)
 console.log(list, 'data')

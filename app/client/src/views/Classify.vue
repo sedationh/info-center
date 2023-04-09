@@ -35,13 +35,13 @@
     <Create :type="2" ref="createRef"></Create>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { reactive, ref } from 'vue'
 import Create from '../components/Create/Create.vue'
 import { data } from '../data/classifyList'
 
 const list = ref(data)
-function create() {
+function createClassify() {
   console.log('新建一个文章')
 }
 function handleEdit(index, row) {
@@ -55,28 +55,5 @@ function createClassify() {
   createRef.value.open()
 }
 
-const tableData = [
-  {
-    titlePage: '11',
-    name: 'hihi',
-    intro: '000',
-    numbers: '19',
-    handle: 'ppp'
-  },
-  {
-    titlePage: '11',
-    name: 'hihi',
-    intro: '000',
-    numbers: '19',
-    handle: 'ppp'
-  },
-  {
-    titlePage: '11',
-    name: 'hihi',
-    intro: '000',
-    numbers: '19',
-    handle: 'ppp'
-  }
-]
 </script>
 <style></style>
