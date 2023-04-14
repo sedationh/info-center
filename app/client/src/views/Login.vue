@@ -34,7 +34,7 @@ const toIndex = () => {
     ElMessage.error('账号或密码不正确')
     return
   }
-  router.push('/blog')
+  router.push('/admin')
 }
 </script>
 

@@ -2,7 +2,29 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '',
-    redirect: '/login',
+    redirect: '/login'
+  },
+  {
+    name: 'index',
+    path: '/index',
+    component: () => import('@/views/Front/Index.vue'),
+    children: [
+      {
+        name: '博客',
+        path: '/blogList',
+        component: () => import('@/views/Front/BlogList.vue')
+      },
+      {
+        name: '标签分类',
+        path: '/tagList',
+        component: () => import('@/views/Front/TagList.vue')
+      },
+      {
+        name: '博客详情',
+        path: '/detail',
+        component: () => import('@/views/Front/BlogDetail.vue')
+      }
+    ]
   },
   {
     name: '登录',
@@ -11,7 +33,7 @@ const routes = [
   },
   {
     name: '首页',
-    path: '/index',
+    path: '/admin',
     component: () => import('@/views/Index.vue'),
     children: [
       {
