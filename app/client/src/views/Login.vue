@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex flex-x-y mt-20">
+    <div class="flex justify-center mt-20">
       <el-form ref="ruleFormRef" :model="ruleForm" status-icon :rules="rules" class="form">
         <div class="login">login</div>
         <el-form-item label="账号" prop="id">

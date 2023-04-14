@@ -20,10 +20,10 @@
         <el-table-column prop="operate" label="操作">
           <template #default="scope">
             <div>
-              <span class="mr-10 hover:text-green-500 cursor-pointer" @click="editor(scope.row)"
+              <span class="mr-10 hover:text-green-500 cursor-pointer" @click="handleEdit(scope.row)"
                 >编辑</span
               >
-              <span class="hover:text-green-500 cursor-pointer" @click="del(scope.row)">删除</span>
+              <span class="hover:text-green-500 cursor-pointer" @click="handleDelete(scope.row)">删除</span>
             </div>
           </template>
         </el-table-column>
@@ -37,23 +37,22 @@
 </template>
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import Create from '../components/Create/Create.vue'
+import Create from '@/components/Create/Create.vue';
 import { data } from '../data/classifyList'
 
 const list = ref(data)
 function createClassify() {
   console.log('新建一个文章')
-}
-function handleEdit(index, row) {
-  console.log(index, row)
-}
-function handleDelete(index, row) {
-  console.log(index, row)
-}
-const createRef = ref()
-function createClassify() {
   createRef.value.open()
 }
+function handleEdit( row: object) {
+  console.log( row)
+}
+function handleDelete( row: object) {
+  console.log( row)
+}
+const createRef = ref()
+
 
 </script>
 <style></style>
