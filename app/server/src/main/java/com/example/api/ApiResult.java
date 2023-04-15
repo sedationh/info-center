@@ -17,4 +17,8 @@ public class ApiResult<T> {
     public static <T> ApiResult<T> ok(T body) {
         return new ApiResult<T>(ApiCode.SUCCESS.getCode(), ApiCode.SUCCESS.getMessage(), body);
     }
+
+    public static <T> ApiResult<T> error(int code, String message) {
+        return new ApiResult(code, message, null);
+    }
 }

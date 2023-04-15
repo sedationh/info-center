@@ -10,7 +10,8 @@ public enum ApiCode {
     FORBIDDEN(403, "禁止访问"),
     NOT_FOUND(404, "请求资源不存在"),
     METHOD_NOT_ALLOWED(405, "请求方法不允许"),
-    SERVER_ERROR(500, "服务器内部错误");
+    SERVER_ERROR2(500, "服务器内部错误"),
+    CUSTOM_ERROR(1000, "自定义错误");
 
     private final int code;
     private final String message;

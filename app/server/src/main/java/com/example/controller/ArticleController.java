@@ -1,7 +1,6 @@
 package com.example.controller;
 
 import com.example.api.ApiResult;
-import com.example.domin.entity.Article;
 import com.example.domin.vo.ArticleVo;
 import com.example.service.ArticleService;
 import lombok.AllArgsConstructor;

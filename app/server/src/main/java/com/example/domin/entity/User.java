@@ -1,6 +1,7 @@
 package com.example.domin.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -8,6 +9,7 @@ import java.time.Instant;
 @Data
 @Entity
 @Table(name = "users")
+@NoArgsConstructor
 public class User {
     @Id
     @Column(name = "id")
@@ -26,7 +28,11 @@ public class User {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
-    @Column(name = "last_login_at")
-    private Instant lastLoginAt;
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+        this.createdAt = Instant.now();
+        this.updatedAt = Instant.now();
+    }
 }
 
