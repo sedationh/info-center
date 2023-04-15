@@ -28,11 +28,15 @@ public class User {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-        this.createdAt = Instant.now();
-        this.updatedAt = Instant.now();
+    @PrePersist
+    protected void onCreate() {
+        createdAt = Instant.now();
+        updatedAt = Instant.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = Instant.now();
     }
 }
 

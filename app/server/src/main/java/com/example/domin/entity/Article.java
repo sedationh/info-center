@@ -1,6 +1,8 @@
 package com.example.domin.entity;
 
+import com.example.domin.param.ArticleParam;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -9,6 +11,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "articles")
+@NoArgsConstructor
 public class Article {
     @Id
     @Column(name = "id")
@@ -32,4 +35,16 @@ public class Article {
             joinColumns = @JoinColumn(name = "article_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private List<Tag> tags;
+
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = Instant.now();
+        updatedAt = Instant.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = Instant.now();
+    }
 }

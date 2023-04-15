@@ -21,7 +21,10 @@ public class UserService {
         if (!all.isEmpty()) {
             throw new Exception("User already exists");
         }
-        userRepository.save(new User(username, password));
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        userRepository.save(user);
     }
 
     public User getUser(String username) {

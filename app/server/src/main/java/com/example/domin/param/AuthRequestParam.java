@@ -1,9 +1,9 @@
-package com.example.domin.params;
+package com.example.domin.param;
 
 import lombok.Data;
 
 @Data
-public class AuthRequestParams {
+public class AuthRequestParam {
     private String username;
     private String password;
 }

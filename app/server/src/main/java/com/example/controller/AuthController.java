@@ -3,20 +3,18 @@ package com.example.controller;
 import com.example.api.ApiCode;
 import com.example.api.ApiResult;
 import com.example.domin.constant.AppConstants;
-import com.example.domin.params.AuthRequestParams;
+import com.example.domin.param.AuthRequestParam;
 import com.example.security.JwtUtils;
 import com.example.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -35,7 +33,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ApiResult signup(@RequestBody AuthRequestParams authRequest) {
+    public ApiResult signup(@RequestBody AuthRequestParam authRequest) {
         String encodedPassword = passwordEncoder.encode(authRequest.getPassword());
 
         try {
@@ -49,7 +47,7 @@ public class AuthController {
 
 
     @PostMapping("/signin")
-    public ApiResult signin(@RequestBody AuthRequestParams authRequest, HttpServletResponse response) {
+    public ApiResult signin(@RequestBody AuthRequestParam authRequest, HttpServletResponse response) {
         // 需要去 WebSecurityConfig 中配置
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword());
         Authentication authentication = authenticationManager.authenticate(token);
