@@ -1,4 +1,4 @@
-package com.info_center.server.data.dialect.identity;
+package com.example.dialect.identity;
 
 import org.hibernate.dialect.identity.IdentityColumnSupportImpl;
 

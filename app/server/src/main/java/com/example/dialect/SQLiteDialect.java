@@ -1,4 +1,4 @@
-package com.info_center.server.data.dialect;
+package com.example.dialect;
 
 /*
  * The author disclaims copyright to this source code.  In place of
@@ -10,7 +10,7 @@ package com.info_center.server.data.dialect;
  *
  */
 
-import com.info_center.server.data.dialect.identity.SQLiteDialectIdentityColumnSupport;
+import com.example.dialect.identity.SQLiteDialectIdentityColumnSupport;
 import org.hibernate.JDBCException;
 import org.hibernate.ScrollMode;
 import org.hibernate.boot.Metadata;

@@ -1,18 +1,14 @@
-package com.info_center.server.domin.entity;
+package com.example.domin.entity;
 
 import lombok.Data;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.Instant;
 
 @Data
 @Entity
-@Table(name="users")
-public class User implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+@Table(name = "users")
+public class User {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

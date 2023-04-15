@@ -1,19 +1,17 @@
-package com.info_center.server.controller;
+package com.example.controller;
 
-import com.info_center.server.api.ApiResult;
-import com.info_center.server.service.UserService;
+import com.example.api.ApiResult;
+import com.example.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/auth")
+@AllArgsConstructor
 public class AuthController {
     private final UserService userService;
-
-    public AuthController(UserService userService) {
-        this.userService = userService;
-    }
 
     @GetMapping("/isUserSet")
     public ApiResult<Boolean> isUserSet() {

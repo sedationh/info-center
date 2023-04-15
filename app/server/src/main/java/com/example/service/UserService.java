@@ -1,6 +1,6 @@
-package com.info_center.server.service;
+package com.example.service;
 
-import com.info_center.server.repository.UserRepository;
+import com.example.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service

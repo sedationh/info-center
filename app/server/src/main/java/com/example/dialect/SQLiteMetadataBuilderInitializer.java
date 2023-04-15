@@ -1,4 +1,4 @@
-package com.info_center.server.data.dialect;
+package com.example.dialect;
 
 import org.hibernate.boot.MetadataBuilder;
 import org.hibernate.boot.registry.StandardServiceRegistry;
