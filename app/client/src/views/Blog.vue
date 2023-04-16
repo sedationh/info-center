@@ -72,7 +72,6 @@ import { reactive, ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useRouter } from 'vue-router'
 import { data } from '../data/blogList.js'
-import { hasLogin } from '@/api'
 const router = useRouter()
 const obj = reactive({
   title: '新增文章',
@@ -83,7 +82,6 @@ let title = ref('')
 let status = ref('')
 let type = ref('')
 
-hasLogin()
 
 let list = ref(data)
 console.log(list, 'data')

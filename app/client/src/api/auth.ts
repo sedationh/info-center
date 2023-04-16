@@ -22,9 +22,9 @@ const register = ({ username, password }: AuthInfo) =>
     }
   })
 
-const login = ({ username, password }: AuthInfo) =>
+const signin = ({ username, password }: AuthInfo) =>
   request({
-    url: path + 'login',
+    url: path + 'signin',
     method: 'post',
     data: {
       username,
@@ -32,4 +32,4 @@ const login = ({ username, password }: AuthInfo) =>
     }
   })
 
-export { hasUserRegistered, register, login }
+export { hasUserRegistered, register, signin }

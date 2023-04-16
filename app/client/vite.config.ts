@@ -11,5 +11,13 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://1050e2ee.r10.cpolar.top',
+        changeOrigin: true,
+      }
+    }
   }
 })
