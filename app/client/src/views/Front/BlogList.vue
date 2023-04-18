@@ -1,6 +1,6 @@
 <template>
   <div class="mt-20 bg-white p-20 rounded-md shadow-dark-50">
-    <div @click="toDetail(item)" v-for="(item, index) in list" :key="index"  class="pb-20" :class="[index == 0?'':'mt-20', index < list.length - 1?'border-b-2':'']">
+    <div @click="toDetail(item)" v-for="(item, index) in list" :key="index"  class="pb-20 pointer" :class="[index == 0?'':'mt-20', index < list.length - 1?'border-b-2':'']">
         <div class=" font-bold ">{{item.title}}</div>
         <div class="mt-20 text-gray-400">{{ item.content }}</div>
         <div class="text-xs mt-20 flex  items-center ">

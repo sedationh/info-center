@@ -5,13 +5,22 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { getArticleDeatil } from '@/api';
+import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 const router = useRouter();
+
+const id = ref('')
 onMounted(() => {
     // 打印
     console.log('router:', router.currentRoute.value.query)
+    // id.value = router.currentRoute.value.query.id||''
+    // getArticleDeatil({
+    //   id: id.value
+    // })
   })
+
+
 
 </script>
 

@@ -25,7 +25,7 @@ const createArticle = ({title,content, tags}: ArticlesInfo) => {
   })
 }
 
-const getOneArticle = ({id}: ArticlesInfo) => {
+const getArticleDeatil = (id: String) => {
   request({
     url: path + '/3',
     data: {
@@ -55,4 +55,4 @@ const deleteArticle = ({id}: ArticlesInfo) => {
 }
 
 
-export {getArticles, createArticle, getOneArticle, aditArticle, deleteArticle}
+export {getArticles, createArticle, getArticleDeatil, aditArticle, deleteArticle}

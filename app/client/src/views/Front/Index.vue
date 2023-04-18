@@ -3,9 +3,9 @@
     <div class="bg-white py-40">
       <div class="main-w m-auto flex justify-between">
         <div class="flex">
-          <div @click="open('blogList')" class="mr-20">logo</div>
-          <div @click="open('blogList')" class="mr-20">博客</div>
-          <div @click="open('tagList')" class="">标签分类</div>
+          <div @click="open('blogList')" class="mr-20 pointer">logo</div>
+          <div @click="open('blogList')" class="mr-20 pointer">博客</div>
+          <div @click="open('tagList')" class="pointer">标签分类</div>
         </div>
         <div>成员</div>
       </div>
@@ -32,5 +32,8 @@ body {
 }
 .main-w {
   width: 80%;
+}
+.pointer {
+  cursor: pointer
 }
 </style>
