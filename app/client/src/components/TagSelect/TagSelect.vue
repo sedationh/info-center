@@ -7,7 +7,7 @@
         type="text"
         v-model="value"
         class="outline-none"
-        placeholder="输入"
+        placeholder="选择或创建新的标签"
         @focus="
           () => {
             showOptions = true

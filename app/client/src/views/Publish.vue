@@ -9,8 +9,8 @@
       <span>设置标题</span>
       <input class="outline-none border-1 border-gray-400 ml-20" type="text" v-model="title">
     </div>
-    <div>
-      选择标签
+    <div class="flex items-center ">
+      <span class="mr-20">选择标签</span>
       <TagSelect :tags="tags" @tags="getTags"></TagSelect>  
     </div>
     <div class="mt-20">
