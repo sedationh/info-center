@@ -16,4 +16,8 @@
   <RouterView></RouterView>
 </template>
 
-<style scoped></style>
+<style>
+.border-1 {
+  border-width: 1px;
+}
+</style>

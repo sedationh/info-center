@@ -1,30 +1,37 @@
 <template>
   <div>
-    <div>
-      <el-select
+    <div class="border-1 border-gray-400 relative p-5 flex items-center z-10">
+      <Tag v-for="item in list2" :key="item.id" :tag="item"></Tag>
+      <input
+        @change="filter()"
+        type="text"
         v-model="value"
-        multiple
-        filterable
-        allow-create
-        default-first-option
-        :reserve-keyword="false"
-        :remote-method="remoteMethod"
-        placeholder="Choose tags for your article"
-        popper-class="hi"
+        class="outline-none"
+        placeholder="输入"
+        @focus="
+          () => {
+            showOptions = true
+          }
+        "
+      />
+      <div v-if="showOptions"
+        class="close-box"
+        @click="close()"
       >
-        
-        <el-option v-for="item in tags" :key="item.id" :label="item.name" :value="item.id">
-          <template #>
+        <div v-if="showOptions" class="options">
+          <div v-for="item in list" :key="item.id" @click.stop="selectTag(item)" class="mb-10">
             <Tag :tag="item"></Tag>
-          </template>
-        </el-option>
-      </el-select>
-    </div>
-    <div>
-      <el-color-picker v-model="color" :show-alpha="false" :predefine="predefineColors" />
-    </div>
-    <div :style="{ 'background-color': colorRgb }">
-      {{ colorRgb }}
+          </div>
+          <div v-if="list.length === 0" class="flex justify-between items-center">
+            <span @click.stop="addTag()">
+              <Tag :tag="defaultTag"></Tag>
+            </span>
+            <span>
+              <el-color-picker v-model="color" :predefine="predefineColors" />
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -32,6 +39,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import Tag from '@/components/Tag/Tag.vue'
+import { tags } from '@/data/tagsList'
 
 defineProps({
   tags: {
@@ -39,6 +47,9 @@ defineProps({
     default: () => []
   }
 })
+
+const list = ref(tags)
+const showOptions = ref(false)
 
 const color = ref('rgba(255, 69, 0)')
 const predefineColors = ref([
@@ -74,14 +85,66 @@ const colorRgb = computed(() => {
   return colorToRgb(color.value)
 })
 
-const value = ref<string[]>([])
+const value = ref('')
+const filter = () => {
+  console.log('list1: ', list.value)
+  console.log(value.value)
+  list.value = tags.filter((tag) => tag.name.includes(value.value))
+  console.log('list2: ', list.value)
+}
+const defaultTag = computed(() => {
+  return {
+    name: value.value,
+    color: colorRgb.value,
+    id: '11'
+  }
+})
 
-const remoteMethod = (value: string) => {
-    console.log('jjj', value)
+const addTag = () => {
+  tags.push(defaultTag.value)
+  list.value = tags
+  selectTag(defaultTag.value)
+}
+
+const list2 = ref([])
+
+const selectTag = (item: Object) => {
+  console.log(item)
+  if (list2.value.find((tag) => tag.id === item.id)) {
+    list2.value = list2.value.filter((tag) => tag.id !== item.id)
+  } else {
+    list2.value.push(item)
+    value.value = ''
+  }
+}
+
+const emit = defineEmits(["tags"])
+const close = ()=> {
+  showOptions.value = false
+  emit("tags", list2.value)
 }
 </script>
 <style>
 .el-input__wrapper {
   width: 500px;
+}
+.options {
+  position: absolute;
+  background-color: #fff;
+  padding: 20px;
+  top: 260px;
+  left: 20px;
+  width: 200px;
+  z-index: 3;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+.close-box {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 220px;
+  top: 0;
+  z-index: -1;
 }
 </style>

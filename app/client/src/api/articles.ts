@@ -6,7 +6,7 @@ type ArticlesInfo = {
   id:string,
   title:string,
   content: string,
-  tags:()=> []
+  tags:string[]
 }
 const getArticles = () =>
   request({

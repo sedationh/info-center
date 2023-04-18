@@ -1,23 +1,26 @@
 <template>
   <div>
-    <div @click="back()" class="mb-20">返回</div>
-    <!-- <div @click="showMd = !showMd" class="mb-20">切换</div> -->
-
-    <div>
-      选择标签
-      <TagSelect :tags="tags"></TagSelect>
-      
-      
+    <div class="mb-20 flex justify-between ">
+      <div @click="back()">返回</div>
+      <div @click="publish()">发布</div>
       
     </div>
-    <div v-if="showMd" class="mt-20">
+    <div class="mb-20">
+      <span>设置标题</span>
+      <input class="outline-none border-1 border-gray-400 ml-20" type="text" v-model="title">
+    </div>
+    <div>
+      选择标签
+      <TagSelect :tags="tags" @tags="getTags"></TagSelect>  
+    </div>
+    <div class="mt-20">
       <!-- <div>Markdown</div> -->
       <MarkdownEditor v-model="markdeonContent" :height="500"></MarkdownEditor>
     </div>
-    <div v-else>
+    <!-- <div v-else>
       <div>HTML</div>
       <HTMLEditor v-model="htmlContent"></HTMLEditor>
-    </div>
+    </div> -->
 
   </div>
 </template>
@@ -29,6 +32,7 @@ import MarkdownEditor from '@/components/MarkdownEditor/MarkdownEditor.vue'
 import HTMLEditor from '@/components/HTMLEditor/HTMLEditor.vue'
 import TagSelect from '@/components/TagSelect/TagSelect.vue'
 import { tags } from '@/data/tagsList'
+import { createArticle } from '@/api'
 
 
 const router = useRouter()
@@ -43,7 +47,23 @@ const back = () => {
 
 console.log('tags', tags)
 
+const title = ref('')
+const tagIdList = ref([])
+const publish = () => {
+  createArticle({
+    id:'',
+    title:title.value,
+    content:markdeonContent.value,
+    tags:tagIdList.value
+  })
+}
 
+const getTags = (data: Object[]) => {
+  console.log(data, 'data')
+  for(const value:Object of data) {
+    tagIdList.value.push(value.id)
+  }
+}
 </script>
 
 <style>

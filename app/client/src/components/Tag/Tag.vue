@@ -1,5 +1,5 @@
 <template>
-  <span class="px-10 py-5 text-xs rounded-md border-1" :style="colors(tag.color)">
+  <span class="px-10 py-5 text-xs rounded-md border-1 mr-5" :style="colors(tag.color)">
     {{ tag.name }}
   </span>
 </template>
