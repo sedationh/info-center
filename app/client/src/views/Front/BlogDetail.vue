@@ -5,6 +5,13 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+const router = useRouter();
+onMounted(() => {
+    // 打印
+    console.log('router:', router.currentRoute.value.query)
+  })
 
 </script>
 

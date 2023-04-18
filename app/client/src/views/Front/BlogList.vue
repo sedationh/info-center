@@ -6,10 +6,8 @@
         <div class="text-xs mt-20 flex  items-center ">
             <span class="mr-20">{{ item.time }}</span>
             <span class="mr-20"> 作者： {{ item.name }}</span>
-            <span v-for="tag in item.tags" :key="tag.id" class="mr-20 px-10 py-5 border-green-500 border-width-1 rounded-sm border-1 text-green-600"
-            :style="{backgroundColor: tag.color, }"
-            >
-                {{ tag.name }}{{ tag.color }}
+            <span class="mr-10"  v-for="tag in item.tags" :key="tag.id">
+                <Tag :tag = "tag"></Tag>
             </span>
         </div>
     </div>
@@ -20,6 +18,7 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 import {ref} from 'vue'
+import Tag from "@/components/Tag/Tag.vue";
 
 const list = ref([
     {
@@ -32,12 +31,12 @@ const list = ref([
             {
                 id:11,
                 name:'知识',
-                color:'green',
+                color:'rgb(20,230, 59)',
             },
             {
                 id:22,
                 name:'知99',
-                color:'blue',
+                color:'rgb(20,230, 59)',
             }
         ]
     },
@@ -51,12 +50,12 @@ const list = ref([
             {
                 id:1221,
                 name:'知识',
-                color:'pink',
+                color:'rgb(194,36, 123)',
             },
             {
                 id:22222,
                 name:'知99',
-                color:'yellow',
+                color:'rgb(194,36, 123)',
             }
         ]
     }
@@ -64,8 +63,10 @@ const list = ref([
 const router = useRouter()
 
 function toDetail(item: object) {
-    router.push('/detail')
+    router.push('/index/detail?id=11')
 }
 </script>
 
-<style></style>
+<style>
+
+</style>

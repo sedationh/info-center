@@ -19,6 +19,7 @@
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
+import { signin } from '@/api'
 const router = useRouter()
 const ruleForm = reactive({
   id: '',
@@ -29,12 +30,18 @@ const rules = reactive({
   id: [{ required: true, message: '请输入' }],
   password: [{ required: true, message: '请输入' }]
 })
-const toIndex = () => {
+  const  toIndex = async () => {
   if (!ruleForm.id || !ruleForm.password) {
     ElMessage.error('账号或密码不正确')
     return
   }
-  router.push('/admin')
+  const res = await signin({
+    username: ruleForm.id,
+    password: ruleForm.password
+  })
+
+  console.log('res: ', res)
+  // router.push('/admin')
 }
 </script>
 

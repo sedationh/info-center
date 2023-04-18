@@ -7,21 +7,22 @@ const routes = [
   {
     name: 'index',
     path: '/index',
+    redirect: '/index/blogList',
     component: () => import('@/views/Front/Index.vue'),
     children: [
       {
         name: '博客',
-        path: '/blogList',
+        path: '/index/blogList',
         component: () => import('@/views/Front/BlogList.vue')
       },
       {
         name: '标签分类',
-        path: '/tagList',
+        path: '/index/tagList',
         component: () => import('@/views/Front/TagList.vue')
       },
       {
         name: '博客详情',
-        path: '/detail',
+        path: '/index/detail',
         component: () => import('@/views/Front/BlogDetail.vue')
       }
     ]
