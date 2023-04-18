@@ -1,16 +1,27 @@
 <template>
-  <span class="px-10 py-5 text-xs rounded-md border-1 mr-5" :style="colors(tag.color)">
-    {{ tag.name }}
+  <span class="px-10 py-5 text-xs rounded-md border-1 mr-5" :style="colors(props.tag.color)">
+    <span>{{ props.tag.name }}</span>
+    <span></span>
+    <span v-if="props.remove" @click.stop="removeTag()" class="iconfont icon-cuo ml-5"></span>
   </span>
 </template>
 
 <script setup lang="ts">
-defineProps({
+const props = defineProps({
   tag: {
     type: Object,
     default: () => {}
+  },
+  remove: {
+    type: Boolean,
+    default: false
   }
 })
+
+const emits = defineEmits(["remove"])
+const removeTag = () => {
+    emits("remove", props.tag)
+}
 const colors = (color: string) => {
   return {
     'background-color': color.substring(0, color.length - 1) + ',0.1)',

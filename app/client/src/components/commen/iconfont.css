@@ -1,26 +1,29 @@
 @font-face {
-    font-family: "iconfont"; /* Project id 3981281 */
-    src: url('//at.alicdn.com/t/c/font_3981281_abfwa6dazl7.woff2?t=1679982279937') format('woff2'),
-         url('//at.alicdn.com/t/c/font_3981281_abfwa6dazl7.woff?t=1679982279937') format('woff'),
-         url('//at.alicdn.com/t/c/font_3981281_abfwa6dazl7.ttf?t=1679982279937') format('truetype');
-  }
-  
-  .iconfont {
-    font-family: "iconfont" !important;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  .icon-caret-right:before {
-    content: "\e6ed";
-  }
-  
-  .icon-caret-down:before {
-    content: "\e6ee";
-  }
-  
-  .icon-zhankai1:before {
-    content: "\e667";
-  }
-  
+  font-family: "iconfont"; /* Project id 3981281 */
+  src: 
+       url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAMsAAsAAAAAB2gAAALdAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHFQGYACDKgqBdIFiATYCJAMUCwwABCAFhGcHUxuHBsgOJQURiQDgDQVAPPy3xu++mdn9ZpIwOx1PNPHQ3FuldKJa5n/tvr8LsMqiBVU9ljtKMtDJZM1PlHBRunNPVnD3z/PpT+UsiwX4WQBkWTonjTGwxQ8WL1CAuqeNRdjreUW5FrGrvUBOwvMSgWabOkUfGRwPQPo1kdtQLJajD/L6uKZRERLliKJQvlGo0ZVFvIGK9DT6MV7Hn49/tiORpMqcfY5eGFDg7mf6+VvMSmSF/F6oE+i8hAoZq0AhrvRnzokRbUKM5v6xdgCNGiUWzX36/C0SSemvbo4uu394FCHJRM2pbQUHWLbwk/pKbvpEIsHPryKJn9+yMt5TiGap2i7gOIefZQq390Rrar5+YiU3EDxx4jg97WR+KHB879pqQTh0cvX6vrxg+NQ+j5y8AOXOxQJ6anU+fe90Hj6xL+95dkIzakvP7RTv/PvLWoJdXTd+/w7+pdBOcVZdSVSjFzw6ujB0ZSHjcMZCWDw8lQ/19wL5zHvPhhdo/vTQwt49I4c/lLshM5yr8lq6Dkjv0ifI56MDAOTvaeAP+I2HdY3PJjLa/ze2FPBZyXsaO4tp2UYJWPm6TWdAYjElZipt7b5fMN0mwFRCs+vhGy7Q7fUy5h64kdCoZ0K4wUiOrNE0VbhlVFpso9Zob7TZiuueQ4serhhRmjBvnRA6XUXS7i2yTveowj1Bpd8X1Dr9R7PTkbZbi/mQ+xgWOVaQNIs02bGJZ+GxUR+mk6bImpIhzDyN4qimsrqaH8I2ZnPM8aZoLecEEeZYaFA8D5umg1zm6FjmlSrnbmtVFWl7S6XsWNCHwUQcpkAksxCNzGEjIZmXv88HoyaZRAykQhnGo5FxpEalaoAa0myo40H28UyhanEcgRCMy1mQQdmPmUbGgbjtw3SYjKukTki5WlW5JIJqldubrQ+4C5o5l1WRIkeJKmr57KSTIosM8wqmUZUn54sUZ9pOnFNF2xC1GgAAAAA=') format('woff2'),
+       url('//at.alicdn.com/t/c/font_3981281_igfk83vm2zs.ttf?t=1681810776154') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-cuo:before {
+  content: "\e6e5";
+}
+
+.icon-caret-right:before {
+  content: "\e6ed";
+}
+
+.icon-caret-down:before {
+  content: "\e6ee";
+}
+
+.icon-zhankai1:before {
+  content: "\e667";
+}

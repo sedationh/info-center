@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="border-1 border-gray-400 relative p-5 flex items-center z-10">
-      <Tag v-for="item in list2" :key="item.id" :tag="item"></Tag>
+      <Tag v-for="item in list2" :key="item.id" :tag="item" :remove="true" @remove="remove"></Tag>
       <input
         @change="filter()"
         type="text"
@@ -14,24 +14,21 @@
           }
         "
       />
-      <div v-if="showOptions"
-        class="close-box"
-        @click="close()"
-      >
-        <div v-if="showOptions" class="options">
-          <div v-for="item in list" :key="item.id" @click.stop="selectTag(item)" class="mb-10">
-            <Tag :tag="item"></Tag>
-          </div>
-          <div v-if="list.length === 0" class="flex justify-between items-center">
-            <span @click.stop="addTag()">
-              <Tag :tag="defaultTag"></Tag>
-            </span>
-            <span>
-              <el-color-picker v-model="color" :predefine="predefineColors" />
-            </span>
-          </div>
+
+      <div v-if="showOptions" class="options">
+        <div v-for="item in list" :key="item.id" @click.stop="selectTag(item)" class="mb-10">
+          <Tag :tag="item"></Tag>
+        </div>
+        <div v-if="list.length === 0" class="flex justify-between items-center">
+          <span @click.stop="addTag()">
+            <Tag :tag="defaultTag"></Tag>
+          </span>
+          <span>
+            <el-color-picker v-model="color" :predefine="predefineColors" />
+          </span>
         </div>
       </div>
+      <div v-if="showOptions" class="close-box" @click="close()"></div>
     </div>
   </div>
 </template>
@@ -87,10 +84,7 @@ const colorRgb = computed(() => {
 
 const value = ref('')
 const filter = () => {
-  console.log('list1: ', list.value)
-  console.log(value.value)
   list.value = tags.filter((tag) => tag.name.includes(value.value))
-  console.log('list2: ', list.value)
 }
 const defaultTag = computed(() => {
   return {
@@ -109,7 +103,6 @@ const addTag = () => {
 const list2 = ref([])
 
 const selectTag = (item: Object) => {
-  console.log(item)
   if (list2.value.find((tag) => tag.id === item.id)) {
     list2.value = list2.value.filter((tag) => tag.id !== item.id)
   } else {
@@ -118,10 +111,14 @@ const selectTag = (item: Object) => {
   }
 }
 
-const emit = defineEmits(["tags"])
-const close = ()=> {
+const emit = defineEmits(['tags'])
+const close = () => {
   showOptions.value = false
-  emit("tags", list2.value)
+  emit('tags', list2.value)
+}
+
+const remove = (tag: Object) => {
+  list2.value = list2.value.filter(item => item.id !== tag.id)
 }
 </script>
 <style>
@@ -132,8 +129,8 @@ const close = ()=> {
   position: absolute;
   background-color: #fff;
   padding: 20px;
-  top: 260px;
-  left: 20px;
+  top: 40px;
+  left: 0px;
   width: 200px;
   z-index: 3;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);

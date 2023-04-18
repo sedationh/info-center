@@ -17,8 +17,9 @@
 
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import {ref} from 'vue'
+import {onMounted, ref} from 'vue'
 import Tag from "@/components/Tag/Tag.vue";
+import { getArticles } from "@/api";
 
 const list = ref([
     {
@@ -65,6 +66,13 @@ const router = useRouter()
 function toDetail(item: object) {
     router.push('/index/detail?id=11')
 }
+
+onMounted(() => {
+    getArticles().then((res)=> {
+        console.log(res, 'res')
+    })
+})
+
 </script>
 
 <style>

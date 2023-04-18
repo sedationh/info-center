@@ -45,7 +45,6 @@ const back = () => {
   router.push('/Blog')
 }
 
-console.log('tags', tags)
 
 const title = ref('')
 const tagIdList = ref([])
@@ -59,7 +58,6 @@ const publish = () => {
 }
 
 const getTags = (data: Object[]) => {
-  console.log(data, 'data')
   for(const value:Object of data) {
     tagIdList.value.push(value.id)
   }
