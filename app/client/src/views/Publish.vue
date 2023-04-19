@@ -9,6 +9,11 @@
       <span>设置标题</span>
       <input class="outline-none border-1 border-gray-400 ml-20" type="text" v-model="title">
     </div>
+    
+    <div class="mb-20">
+      <span>设置简介</span>
+      <input class="outline-none border-1 border-gray-400 ml-20" type="text" v-model="intro">
+    </div>
     <div class="flex items-center ">
       <span class="mr-20">选择标签</span>
       <TagSelect :tags="tags" @tags="getTags"></TagSelect>  
@@ -17,10 +22,6 @@
       <!-- <div>Markdown</div> -->
       <MarkdownEditor v-model="markdeonContent" :height="500"></MarkdownEditor>
     </div>
-    <!-- <div v-else>
-      <div>HTML</div>
-      <HTMLEditor v-model="htmlContent"></HTMLEditor>
-    </div> -->
 
   </div>
 </template>
@@ -47,6 +48,7 @@ const back = () => {
 
 
 const title = ref('')
+const intro = ref('')
 const tagIdList = ref([])
 const publish = () => {
   createArticle({

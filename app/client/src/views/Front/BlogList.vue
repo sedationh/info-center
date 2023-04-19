@@ -10,46 +10,8 @@ import {onMounted, ref} from 'vue'
 import Tag from "@/components/Tag/Tag.vue";
 import { getArticles } from "@/api";
 import ArticleList from "@/components/ArticleList/ArticleList.vue";
-const list = ref([
-    {
-        id:9998,
-        title:'嗨嗨嗨嗨',
-        content:'介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍',
-        time:'时间时间时间',
-        name:'作者作者作者',
-        tags: [
-            {
-                id:"11",
-                name:'知识11',
-                color:'rgb(20,230, 59)',
-            },
-            {
-                id:"22",
-                name:'知22',
-                color:'rgb(130,120, 59)',
-            }
-        ]
-    },
-    {
-        id:222,
-        title:'嗨嗨嗨嗨',
-        content:'介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍',
-        time:'时间时间时间',
-        name:'作者作者作者',
-        tags: [
-            {
-                id:"1221",
-                name:'知识1221',
-                color:'rgb(194,102, 123)',
-            },
-            {
-                id:"22222",
-                name:'知22222',
-                color:'rgb(122,36, 123)',
-            }
-        ]
-    }
-])
+import {data as blogList} from '@/data/blogList'
+const list = ref(blogList)
 const router = useRouter()
 
 // function toDetail(item: object) {

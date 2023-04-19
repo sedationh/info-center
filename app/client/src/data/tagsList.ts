@@ -30,13 +30,13 @@ export const tags = [
     color: 'rgb(122,36, 123)'
   },
   {
-    id:"11",
-    name:'知识11',
-    color:'rgb(20,230, 59)',
-},
-{
-    id:"22",
-    name:'知22',
-    color:'rgb(130,120, 59)',
-}
+    id: '11',
+    name: '知识11',
+    color: 'rgb(20,230, 59)'
+  },
+  {
+    id: '22',
+    name: '知22',
+    color: 'rgb(130,120, 59)'
+  }
 ]

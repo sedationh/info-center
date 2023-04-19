@@ -33,6 +33,7 @@ import ArticleList from '@/components/ArticleList/ArticleList.vue'
 import { tags } from '@/data/tagsList'
 import { onMounted, ref, reactive } from 'vue'
 import { useRoute } from 'vue-router'
+import {data as blogList} from '@/data/blogList'
 
 const route = useRoute()
 const currentTag = ref({})
@@ -46,48 +47,7 @@ onMounted(() => {
 const searchValue = ref('')
 const list = ref(tags)
 
-const articleList1 = ref([
-    {
-        id:9998,
-        title:'嗨嗨嗨嗨',
-        content:'介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍',
-        time:'时间时间时间',
-        name:'作者作者作者',
-        tags: [
-            {
-                id:"11",
-                name:'知识11',
-                color:'rgb(20,230, 59)',
-            },
-            {
-                id:"22",
-                name:'知22',
-                color:'rgb(130,120, 59)',
-            }
-        ]
-    },
-    {
-        id:222,
-        title:'嗨嗨嗨嗨',
-        content:'介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍',
-        time:'时间时间时间',
-        name:'作者作者作者',
-        tags: [
-            {
-                id:"1221",
-                name:'知识1221',
-                color:'rgb(194,102, 123)',
-            },
-            {
-                id:"22222",
-                name:'知22222',
-                color:'rgb(122,36, 123)',
-            }
-        ]
-    }
-])
-
-const articleList = ref(articleList1.value)
+const articleList = ref(blogList)
 const selectTag = (data) => {
   currentTag.value = data 
   selected.value = true
@@ -107,12 +67,12 @@ const selected = ref(false)
 
 const ininList = (value) => {
   if(value) {
-    articleList.value = articleList1.value.filter(item => {
+    articleList.value = blogList.filter(item => {
     return item.tags.find(tag => tag.id == value.id) 
   })
   }
   else {
-    articleList.value = articleList1.value
+    articleList.value = blogList
   }
   
 }

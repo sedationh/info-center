@@ -8,10 +8,10 @@
       :class="[index == 0 ? '' : 'mt-20', index < list.length - 1 ? 'border-b-2' : '']"
     >
       <div class="font-bold">{{ item.title }}</div>
-      <div class="mt-20 text-gray-400">{{ item.content }}</div>
+      <div class="mt-20 text-gray-400">{{ item.intro }}</div>
       <div class="text-xs mt-20 flex items-center">
         <span class="mr-20">{{ item.time }}</span>
-        <span class="mr-20"> 作者： {{ item.name }}</span>
+        <span class="mr-20" v-if="item.name"> 作者： {{ item.name }}</span>
         <span class="mr-10" v-for="tag in item.tags" :key="tag.id" @click.stop="selectTag(tag)">
           <Tag :tag="tag"></Tag>
         </span>
@@ -37,7 +37,7 @@ defineProps({
 const router = useRouter()
 
 function toDetail(item: object) {
-  router.push('/index/detail?id=11')
+  router.push('/index/detail?id=' + item.id)
 }
 
 const emits = defineEmits(["selectTag"])

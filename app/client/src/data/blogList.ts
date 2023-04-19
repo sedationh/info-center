@@ -1,22 +1,82 @@
 export const data = [
-    {
-        cover: "https://img0.baidu.com/it/u=1684532727,1424929765&fm=253&app=120&size=w931&n=0&f=JPEG&fmt=auto?sec=1680627600&t=0ee688bf9727a8edee2f023609874e8d",
-        title: "第一篇文章",
-        editor: 1, //  0是富文本 1是markdown
-        comment: true, //true可评论， false不可评论
-        time:'2023-3-4',
-        status:1, // 0草稿1已发布2已删除
-        type:0,  //0原创1转发
-        operate:['1']
-    },
-    {
-        // cover: "https://img0.baidu.com/it/u=1684532727,1424929765&fm=253&app=120&size=w931&n=0&f=JPEG&fmt=auto?sec=1680627600&t=0ee688bf9727a8edee2f023609874e8d",
-        title: "第二篇文章",
-        editor: 2, //  0是富文本 1是markdown
-        comment: true, //true可评论， false不可评论
-        time:'2023-3-4',
-        status:0, // 0草稿1已发布2已删除
-        type:0,
-        operate:['1']
-    }
+  {
+    id: "01",
+    title: '测试一',
+    intro: '这是一个测试文章',
+    content:
+      '# hi ## 今天天气好 ## 适合出去玩 ### 去哪玩？ 1. 去钓鱼 2. 荡秋千 3.摸鱼 * 好耶 * 好耶 * 好耶',
+    time:"20120901",
+    tags: [
+      {
+        id: '111',
+        name: 'HTML',
+        color: 'rgb(132,62, 36)'
+      },
+      {
+        id: '1221',
+        name: '知识1221',
+        color: 'rgb(194,102, 123)'
+      }
+    ]
+  },
+  {
+    id: "02",
+    title: '测试二',
+    intro: '这是一个测试文章',
+    content:
+      '# hi ## 今天天气好 ## 适合出去玩 ### 去哪玩？ 1. 去钓鱼 2. 荡秋千 3.摸鱼 * 好耶 * 好耶 * 好耶',
+      time:"20120901",
+    tags: [
+      {
+        id: '22222',
+        name: '知22222',
+        color: 'rgb(122,36, 123)'
+      },
+      {
+        id: '333',
+        name: 'JS',
+        color: 'rgb(194,36, 123)'
+      }
+    ]
+  },
+  {
+    id: "03",
+    title: '测试三',
+    intro: '这是一个测试文章',
+    content:
+      '# hi ## 今天天气好 ## 适合出去玩 ### 去哪玩？ 1. 去钓鱼 2. 荡秋千 3.摸鱼 * 好耶 * 好耶 * 好耶',
+      time:"20120901",
+    tags: [
+      {
+        id: '11',
+        name: '知识11',
+        color: 'rgb(20,230, 59)'
+      }
+    ]
+  },
+  {
+    id: "04",
+    title: '测试四',
+    intro: '这是一个测试文章',
+    content:
+      '# hi ## 今天天气好 ## 适合出去玩 ### 去哪玩？ 1. 去钓鱼 2. 荡秋千 3.摸鱼 * 好耶 * 好耶 * 好耶',
+      time:"20120901",
+    tags: [
+      {
+        id: '1221',
+        name: '知识1221',
+        color: 'rgb(194,102, 123)'
+      },
+      {
+        id: '222',
+        name: 'CSS',
+        color: 'rgb(20,230, 59)'
+      },
+      {
+        id: '22',
+        name: '知22',
+        color: 'rgb(130,120, 59)'
+      }
+    ]
+  }
 ]
