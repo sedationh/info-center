@@ -1,11 +1,11 @@
 import request from '@/utils/request'
 
-const path = 'tags/'
+const path = '/tags'
 
 type TagsInfo = {
-  name:string,
-  id: string|number|symbol|boolean,
-  color:string
+  name?:string,
+  id?: string,
+  color?:string
 }
 const getTags = () =>
   request({

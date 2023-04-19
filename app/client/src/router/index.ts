@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '',
-    redirect: '/login'
+    redirect: '/index'
   },
   {
     name: 'index',
@@ -11,17 +11,17 @@ const routes = [
     component: () => import('@/views/Front/Index.vue'),
     children: [
       {
-        name: '博客',
+        name: 'blogList',
         path: '/index/blogList',
         component: () => import('@/views/Front/BlogList.vue')
       },
       {
-        name: '标签分类',
+        name: 'tagList',
         path: '/index/tagList',
         component: () => import('@/views/Front/TagList.vue')
       },
       {
-        name: '博客详情',
+        name: 'blogDetail',
         path: '/index/detail',
         component: () => import('@/views/Front/BlogDetail.vue')
       }

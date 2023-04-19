@@ -37,6 +37,8 @@
 import { ref, computed } from 'vue'
 import Tag from '@/components/Tag/Tag.vue'
 import { tags } from '@/data/tagsList'
+import { createTag, getTags } from '@/api';
+
 
 defineProps({
   tags: {
@@ -81,6 +83,7 @@ const colorToRgb = (color: string) => {
 const colorRgb = computed(() => {
   return colorToRgb(color.value)
 })
+
 
 const value = ref('')
 const filter = () => {
