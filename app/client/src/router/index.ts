@@ -24,6 +24,11 @@ const routes = [
         name: 'blogDetail',
         path: '/index/detail',
         component: () => import('@/views/Front/BlogDetail.vue')
+      },
+      {
+        name: 'user',
+        path: '/index/user',
+        component: () => import('@/views/Front/User.vue')
       }
     ]
   },
@@ -35,6 +40,7 @@ const routes = [
   {
     name: '首页',
     path: '/admin',
+    redirect: '/blog',
     component: () => import('@/views/Index.vue'),
     children: [
       {

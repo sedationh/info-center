@@ -30,18 +30,18 @@ const rules = reactive({
   id: [{ required: true, message: '请输入' }],
   password: [{ required: true, message: '请输入' }]
 })
-  const  toIndex = async () => {
+const toIndex = async () => {
   if (!ruleForm.id || !ruleForm.password) {
     ElMessage.error('账号或密码不正确')
     return
   }
-  const res = await signin({
-    username: ruleForm.id,
-    password: ruleForm.password
-  })
+  // const res = await signin({
+  //   username: ruleForm.id,
+  //   password: ruleForm.password
+  // })
 
-  console.log('res: ', res)
-  // router.push('/admin')
+  // console.log('res: ', res)
+  router.push('/admin')
 }
 </script>
 

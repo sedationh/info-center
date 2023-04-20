@@ -64,15 +64,15 @@ const list = [
       }
     ]
   },
-  {
-    name: '专题',
-    group: [
-      {
-        name: '专题管理',
-        url: '/specialTopic'
-      }
-    ]
-  },
+  // {
+  //   name: '专题',
+  //   group: [
+  //     {
+  //       name: '专题管理',
+  //       url: '/specialTopic'
+  //     }
+  //   ]
+  // },
   {
     name: '设置',
     group: [

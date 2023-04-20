@@ -1,13 +1,19 @@
 <template>
   <div class=" ">
-    <div class="bg-white py-40">
-      <div class="main-w m-auto flex justify-between">
+    <div class="bg-white py-30">
+      <div class="main-w m-auto flex justify-between items-center">
         <div class="flex">
           <div @click="open('blogList')" class="mr-20 pointer">logo</div>
-          <div @click="open('blogList')" class="mr-20 pointer">博客</div>
+          <!-- <div @click="open('blogList')" class="mr-20 pointer">博客</div> -->
           <div @click="open('tagList')" class="pointer">标签分类</div>
         </div>
-        <div>成员</div>
+        <div @click="open('user')">
+          <el-image
+          style="width: 60px; height: 60px; border-radius: 50%"
+          src="https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg"
+          fit="cover"
+        />
+        </div>
       </div>
     </div>
 

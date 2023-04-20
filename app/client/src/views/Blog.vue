@@ -1,15 +1,15 @@
 <template>
   <div>
     <div class="flex">
-      <div class="flex-x-y mr-20">
+      <div class="flex justify-center items-center nowrap mr-20">
         <span class="nowrap mr-10">标题</span>
         <el-input v-model="title" placeholder="请输入内容"></el-input>
       </div>
-      <div class="flex-x-y mr-20">
+      <div class="flex justify-center items-center nowrap mr-20">
         <span class="nowrap mr-10">状态</span>
         <el-input v-model="status" placeholder="请输入内容"></el-input>
       </div>
-      <div class="flex-x-y mr-20">
+      <div class="flex justify-center items-center nowrap mr-20">
         <span class="nowrap mr-10">分类</span>
         <el-input v-model="type" placeholder="请输入内容"></el-input>
       </div>
@@ -21,28 +21,21 @@
 
     <div class="mt-20">
       <el-table :data="list" style="width: 100%">
-        <el-table-column prop="cover" label="封面" width="180">
+        <el-table-column prop="title" label="文章标题" width="180"> </el-table-column>
+        <el-table-column prop="intro" label="文章简介" width="380"> 
           <template #default="scope">
-            <img v-if="scope.row.cover" :src="scope.row.cover" class="cover-size" alt="" />
-            <div v-else class="cover-size bg-green-600 text-white flex items-center justify-center">
-              {{ scope.row.title.slice(0, 5) }}
+            <div class="truncate">
+              {{ scope.row.intro }}迪斯科解放和上雕刻技法和四道口附近建设顽皮的散热架上次上课仍可见
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="title" label="文章标题" width="180"> </el-table-column>
-        <el-table-column prop="editor" label="编辑器">
+        <el-table-column prop="type" label="标签">
           <template #default="scope">
-            <div>{{ scope.row.editor == 0 ? '富文本' : 'Markdown' }}</div>
-          </template>
-        </el-table-column>
-        <el-table-column prop="type" label="类型">
-          <template #default="scope">
-            <div>{{ scope.row.type == 0 ? '原创' : '转发' }}</div>
-          </template>
-        </el-table-column>
-        <el-table-column prop="comment" label="可评论">
-          <template #default="scope">
-            <div>{{ scope.row.comment ? '可评论' : '不可评论' }}</div>
+            <div class="my-10">
+              <span v-for="item in scope.row.tags" :key="item.id" class="mr-5 mb-5">
+                <Tag :tag="item"></Tag>
+              </span>
+            </div>
           </template>
         </el-table-column>
         <el-table-column prop="status" label="状态">
@@ -55,7 +48,10 @@
         <el-table-column prop="time" label="时间"> </el-table-column>
         <el-table-column prop="operate" label="操作">
           <template #default="scope">
-            <operateButton :dataList="list" :data="scope.row" />
+            <div>
+              <span @click.stop="adit(scope.row)"> 编辑 </span>
+              <span class="ml-20" @click.stop="del(scope.row)"> 删除 </span>
+            </div>
           </template>
         </el-table-column>
       </el-table>
@@ -70,6 +66,7 @@
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { data } from '../data/blogList'
+import Tag from '@/components/Tag/Tag.vue'
 const router = useRouter()
 const obj = reactive({
   title: '新增文章',
@@ -90,10 +87,32 @@ const createTitle = () => {
   // createRef.value.open()
   router.push('/publish')
 }
+
+const adit = (data) => {
+  console.log(data, 'aditttt')
+}
+
+const del = (data) => {
+  console.log(data, 'del')
+}
 </script>
 <style>
 .cover-size {
   width: 156px;
   height: 88px;
+}
+.el-table .cell {
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    height: 50px;
+    word-break: break-all;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+}
+.nowrap {
+  white-space: nowrap;
 }
 </style>
