@@ -25,7 +25,6 @@ import { useRouter } from 'vue-router'
 import { onMounted, ref } from 'vue'
 import Tag from '@/components/Tag/Tag.vue'
 import { getArticles } from '@/api'
-import { ro } from 'element-plus/es/locale'
 
 defineProps({
   list: {
