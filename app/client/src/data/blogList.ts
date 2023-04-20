@@ -4,7 +4,7 @@ export const data = [
     title: '测试一',
     intro: '这是一个测试文章',
     content:
-      '# hi ## 今天天气好 ## 适合出去玩 ### 去哪玩？ 1. 去钓鱼 2. 荡秋千 3.摸鱼 * 好耶 * 好耶 * 好耶',
+      [ "# hi\n1. hao\n2. haha\n## 挺好的\n```js\nconst a = 1;\nconst b = 2;\nconsole.log(a + b);\n```\n# haah " ],
     time:"20120901",
     tags: [
       {
@@ -24,7 +24,7 @@ export const data = [
     title: '测试二',
     intro: '这是一个测试文章',
     content:
-      '# hi ## 今天天气好 ## 适合出去玩 ### 去哪玩？ 1. 去钓鱼 2. 荡秋千 3.摸鱼 * 好耶 * 好耶 * 好耶',
+    [ "# hi\n1. hao\n2. haha\n## 挺好的\n```js\nconst a = 1;\nconst b = 2;\nconsole.log(a + b);\n```\n# haah " ],
       time:"20120901",
     tags: [
       {
@@ -44,7 +44,7 @@ export const data = [
     title: '测试三',
     intro: '这是一个测试文章',
     content:
-      '# hi ## 今天天气好 ## 适合出去玩 ### 去哪玩？ 1. 去钓鱼 2. 荡秋千 3.摸鱼 * 好耶 * 好耶 * 好耶',
+      [ "# hi\n1. hao\n2. haha\n## 挺好的\n```js\nconst a = 1;\nconst b = 2;\nconsole.log(a + b);\n```\n# haah " ],
       time:"20120901",
     tags: [
       {
@@ -59,7 +59,7 @@ export const data = [
     title: '测试四',
     intro: '这是一个测试文章',
     content:
-      '# hi ## 今天天气好 ## 适合出去玩 ### 去哪玩？ 1. 去钓鱼 2. 荡秋千 3.摸鱼 * 好耶 * 好耶 * 好耶',
+      [ "# hi\n1. hao\n2. haha\n## 挺好的\n```js\nconst a = 1;\nconst b = 2;\nconsole.log(a + b);\n```\n# haah " ],
       time:"20120901",
     tags: [
       {

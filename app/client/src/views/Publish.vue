@@ -22,7 +22,7 @@
       <!-- <div>Markdown</div> -->
       <MarkdownEditor v-model="markdeonContent" :height="500"></MarkdownEditor>
     </div>
-
+    {{ markdeonContent.split('/n') }}
   </div>
 </template>
 
