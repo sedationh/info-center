@@ -9,19 +9,21 @@
         <span class="nowrap mr-10">状态</span>
         <el-input v-model="status" placeholder="请输入内容"></el-input>
       </div>
-      <div class="flex justify-center items-center nowrap mr-20">
+      <!-- <div class="flex justify-center items-center nowrap mr-20">
         <span class="nowrap mr-10">分类</span>
         <el-input v-model="type" placeholder="请输入内容"></el-input>
-      </div>
+      </div> -->
       <el-button plain type="primary">搜索</el-button>
     </div>
     <div class="mt-20">
-      <el-button type="success" plain @click="createTitle()">新建文章</el-button>
+      <el-button type="success" plain @click="() => router.push('/admin/publish')">新建文章</el-button>
     </div>
 
     <div class="mt-20">
       <el-table :data="list" style="width: 100%">
         <el-table-column prop="title" label="文章标题" width="180"> </el-table-column>
+        <el-table-column prop="id" label="id" width="180"> </el-table-column>
+        
         <el-table-column prop="intro" label="文章简介" width="380"> 
           <template #default="scope">
             <div class="truncate">
@@ -45,7 +47,7 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="time" label="时间"> </el-table-column>
+        <el-table-column prop="updatedAt" label="时间"> </el-table-column>
         <el-table-column prop="operate" label="操作">
           <template #default="scope">
             <div>
@@ -59,37 +61,41 @@
     <div class="mt-20 flex-x-y">
       <el-pagination background layout="prev, pager, next" :total="3"> </el-pagination>
     </div>
-    <Create :config="obj" :type="1" ref="createRef"></Create>
+
   </div>
 </template>
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { data } from '../data/blogList'
 import Tag from '@/components/Tag/Tag.vue'
-const router = useRouter()
-const obj = reactive({
-  title: '新增文章',
-  name: '',
-  phone: ''
+import { getArticles } from '@/api'
+
+const list = ref([])
+
+onMounted(() => {
+  getList()
 })
-let title = ref('')
-let status = ref('')
-let type = ref('')
 
-// hasLogin()
-
-let list = ref(data)
-console.log(list, 'data')
-const createRef = ref()
-
-const createTitle = () => {
-  // createRef.value.open()
-  router.push('/publish')
+const getList = ()=> {
+  getArticles().then((res) => {
+    if(res.code == 200) {
+      list.value = res.data
+    }
+  }).catch((err) => {
+    console.log(err, 'err')
+  })
 }
 
+const router = useRouter()
+const title = ref('')
+const status = ref('')
 const adit = (data) => {
-  console.log(data, 'aditttt')
+  router.push({
+    path:'/admin/publish',
+    query: {
+      id: data.id
+    }
+  })
 }
 
 const del = (data) => {

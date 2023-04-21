@@ -3,10 +3,10 @@
     <template #footer>
       <div class="flex justify-center items-center w-90% mb-20 mt-20">
         <el-form :model="info" class="w-100% ml-50">
-          <el-form-item label="标题">
+          <el-form-item label="名称" width="180">
             <el-input v-model="info.name" />
           </el-form-item>
-          <el-form-item :label="type == 4 ? '头像' : '封面'">
+          <el-form-item v-if="props.type == 3" :label="props.type == 4 ? '头像' : '封面'">
             <el-upload
               class="avatar-uploader bg-gray-100"
               action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
@@ -20,11 +20,15 @@
               </el-icon>
             </el-upload>
           </el-form-item>
-          <el-form-item label="简介">
+          <el-form-item label="颜色">
+            <el-color-picker v-model="color" :predefine="predefineColors" />
+           <span class="ml-20 color-white" :style="{'background-color': color}"> {{ color }}</span>
+          </el-form-item>
+          <el-form-item v-if="props.type == 3" label="简介">
             <el-input v-model="info.name" type="textarea" />
           </el-form-item>
           <div class="flex">
-            <el-button class="bg-green-500 flex justify-end" type="success">{{
+            <el-button @click="success()" class="bg-green-500 flex justify-end" type="success">{{
               type == 1 ? '发布' : '创建'
             }}</el-button>
             <el-button class="bg-green-500 flex justify-end" type="success" @click="show = false"
@@ -41,21 +45,20 @@
 import { reactive, ref } from 'vue'
 import { Plus } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
-defineProps({
+const props = defineProps({
   type: {
     type: Number,
     default: 1 //   1: 新增文章 2：新增分类 3: 新建专题 4：新增成员
   }
 })
-const info = reactive({
-  title: '',
-  name: '',
-  img: '',
-  intro: ''
-})
-let show = ref(false)
 
-const title = ref(['新增文章', '新增分类', '新增专题', '新增成员'])
+const info = reactive({
+  name: '',
+  color: '#22C55E',
+})
+const show = ref(false)
+
+const title = ref(['新增文章', '新增标签', '新增专题', '新增成员'])
 
 function open() {
   show.value = true
@@ -78,6 +81,13 @@ defineExpose({
   open,
   show
 })
+const emits = defineEmits(["success"])
+const success = () => {
+  console.log()
+  emits("success", {name: info.name, color: info.color})
+}
+
+
 </script>
 
 <style>

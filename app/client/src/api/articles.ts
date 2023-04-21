@@ -3,34 +3,33 @@ import request from '@/utils/request'
 const path = '/articles'
 
 type ArticlesInfo = {
-  id:string,
-  title:string,
-  content: string,
-  tags:string[]
+  id?:string,
+  title?:string,
+  content?: string,
+  tagIds?:string[]
 }
 const getArticles = () =>
   request({
     url: path
 })
 
-const createArticle = ({title,content, tags}: ArticlesInfo) => {
+const createArticle = ({title,content, tagIds}: ArticlesInfo) => {
   request({
     url: path,
     method:'post',
     data: {
       title,
       content,
-      tags
+      tagIds
     }
   })
 }
 
 const getArticleDeatil = (id: String) => {
   request({
-    url: path + '/3',
-    data: {
-      id
-    }
+    url: path + '/' + id,
+  }).then((res) => {
+    return res
   })
 }
 
@@ -46,7 +45,7 @@ const aditArticle = ({id}: ArticlesInfo) => {
 
 const deleteArticle = ({id}: ArticlesInfo) => {
   request({
-    url: path + '/2',
+    url: path,
     method:'delete',
     data: {
       id

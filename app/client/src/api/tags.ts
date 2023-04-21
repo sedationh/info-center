@@ -13,7 +13,7 @@ const getTags = () =>
 })
 
 const createTag = ({name, color}: TagsInfo) => {
-  request({
+  return request({
     url: path,
     method:'post',
     data: {
@@ -23,12 +23,10 @@ const createTag = ({name, color}: TagsInfo) => {
   })
 }
 
-const getOneTag = ({name}: TagsInfo) => {
-  request({
-    url: path + '/1',
-    data: {
-      name
-    }
+const getOneTag = (id: string|number) => {
+  return request({
+    url: path + '/' + id,
+
   })
 }
 
@@ -44,13 +42,10 @@ const aditTag = ({id, name, color}: TagsInfo) => {
   })
 }
 
-const deleteTag = ({id}: TagsInfo) => {
-  request({
-    url: path,
+const deleteTag = (id: string) => {
+  return request({
+    url: path + '/' + id,
     method:'delete',
-    data: {
-      id
-    }
   })
 }
 

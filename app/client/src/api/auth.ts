@@ -1,10 +1,10 @@
 import request from '@/utils/request'
 
-const path = 'auth/'
+const path = '/auth'
 
 const hasUserRegistered = () =>
   request({
-    url: path + 'hasUserRegistered'
+    url: path + '/isUserSet'
   })
 
 type AuthInfo = {
@@ -14,7 +14,7 @@ type AuthInfo = {
 
 const register = ({ username, password }: AuthInfo) =>
   request({
-    url: path + 'register',
+    url: path + '/signup',
     method: 'post',
     data: {
       username,
@@ -24,7 +24,7 @@ const register = ({ username, password }: AuthInfo) =>
 
 const signin = ({ username, password }: AuthInfo) =>
   request({
-    url: path + 'signin',
+    url: path + '/signin',
     method: 'post',
     data: {
       username,

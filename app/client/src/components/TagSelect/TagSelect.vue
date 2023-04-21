@@ -19,7 +19,7 @@
         <div v-for="item in list" :key="item.id" @click.stop="selectTag(item)" class="mb-10">
           <Tag :tag="item"></Tag>
         </div>
-        <div v-if="list.length === 0" class="flex justify-between items-center">
+        <div v-if="list.length == 0 && value != ''" class="flex justify-between items-center">
           <span @click.stop="addTag()">
             <Tag :tag="defaultTag"></Tag>
           </span>
@@ -34,20 +34,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import Tag from '@/components/Tag/Tag.vue'
-import { tags } from '@/data/tagsList'
-import { createTag, getTags } from '@/api';
+import { createTag, getTags } from '@/api'
 
-
-defineProps({
-  tags: {
-    type: Array,
-    default: () => []
-  }
+const tagsList = ref([])
+const list = ref([])
+onMounted(() => {
+  get()
 })
+const get = () => {
+  getTags().then((res) => {
+    if (res.code == 200) {
+      tagsList.value = res.data
+      list.value = tagsList.value
+    }
+  })
+}
 
-const list = ref(tags)
+
 const showOptions = ref(false)
 
 const color = ref('rgba(255, 69, 0)')
@@ -84,10 +89,9 @@ const colorRgb = computed(() => {
   return colorToRgb(color.value)
 })
 
-
 const value = ref('')
 const filter = () => {
-  list.value = tags.filter((tag) => tag.name.includes(value.value))
+  list.value = tagsList.value.filter((tag) => tag.name.includes(value.value))
 }
 const defaultTag = computed(() => {
   return {
@@ -97,9 +101,14 @@ const defaultTag = computed(() => {
   }
 })
 
-const addTag = () => {
-  tags.push(defaultTag.value)
-  list.value = tags
+const addTag = async () => {
+  tagsList.value.push(defaultTag.value)
+  createTag({
+    name: value.value,
+    color: colorRgb.value
+  })
+  // console.log(res, 'res')
+  list.value = tagsList.value
   selectTag(defaultTag.value)
 }
 
@@ -121,7 +130,7 @@ const close = () => {
 }
 
 const remove = (tag: Object) => {
-  list2.value = list2.value.filter(item => item.id !== tag.id)
+  list2.value = list2.value.filter((item) => item.id !== tag.id)
 }
 </script>
 <style>

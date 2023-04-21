@@ -5,9 +5,13 @@ const routes = [
     redirect: '/index'
   },
   {
+    path: '/1',
+    component: () => import('@/views/1.vue'),
+  },
+  {
     name: 'index',
     path: '/index',
-    redirect: '/index/blogList',
+    redirect: '/index/tagList',
     component: () => import('@/views/Front/Index.vue'),
     children: [
       {
@@ -40,47 +44,47 @@ const routes = [
   {
     name: '首页',
     path: '/admin',
-    redirect: '/blog',
+    redirect: '/admin/blog',
     component: () => import('@/views/Index.vue'),
     children: [
       {
         name: '博客管理',
-        path: '/blog',
+        path: '/admin/blog',
         component: () => import('@/views/Blog.vue')
       },
       {
         name: '创建文章',
-        path: '/publish',
+        path: '/admin/publish',
         component: () => import('@/views/Publish.vue')
       },
       {
-        name: '分类管理',
-        path: '/classify',
-        component: () => import('@/views/Classify.vue')
+        name: '标签管理',
+        path: '/admin/tags',
+        component: () => import('@/views/Tags.vue')
       },
       {
         name: '专题管理',
-        path: '/specialTopic',
+        path: '/admin/specialTopic',
         component: () => import('@/views/SpecialTopic.vue')
       },
       {
         name: '个人信息设置',
-        path: '/myInfo',
+        path: '/admin/myInfo',
         component: () => import('@/views/UserInfo.vue')
       },
       {
         name: '成员管理',
-        path: '/member',
+        path: '/admin/member',
         component: () => import('@/views/Member.vue')
       },
       {
         name: '系统设置',
-        path: '/system',
+        path: '/admin/system',
         component: () => import('@/views/System.vue')
       },
       {
         name: '回收站',
-        path: '/retrieve',
+        path: '/admin/retrieve',
         component: () => import('@/views/Retrieve.vue')
       }
     ]

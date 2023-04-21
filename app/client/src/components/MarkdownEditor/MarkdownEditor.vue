@@ -39,7 +39,6 @@ const change = (markdeonContent: string, htmlContent:string) => {
   emit('update:modelValue', markdeonContent)
   emit('htmlContent', htmlContent)
 }
-console.log(props)
 </script>
 
 <style></style>

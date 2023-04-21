@@ -7,7 +7,7 @@
           <div>欢迎</div>
         </el-header>
         <el-container>
-          <el-aside width="200px">
+          <el-aside width="200px" class="mt-20">
             <el-menu :unique-opened="true" class="el-menu-vertical-demo bg-grey border-null">
               <el-sub-menu v-for="(item, index1) in list" :key="index1" :index="index1">
                 <template #title>
@@ -15,8 +15,12 @@
                   <span class="color-333">{{ item.name }}</span>
                 </template>
                 <div v-for="(item1, index) in item.group" :key="index" class="hover:bg-white">
-                  <el-menu-item @click="open(item1)" class="color-333 menu-item"
-                    :class="currentName == item1.name ? 'bg-white' : 'bg-grey'">{{ item1.name }}</el-menu-item>
+                  <el-menu-item
+                    @click="open(item1)"
+                    class="color-333 menu-item"
+                    :class="currentName == item1.name ? 'bg-white' : 'bg-grey'"
+                    >{{ item1.name }}</el-menu-item
+                  >
                 </div>
               </el-sub-menu>
             </el-menu>
@@ -38,16 +42,18 @@ const router = useRouter()
 let currentName = ref('')
 
 interface GroupItem {
-  name: string;
-  url: string;
+  name: string
+  url: string
 }
 
 function open(item: GroupItem) {
-  currentName.value = item.name
-  router.push(item.url)
+  if (item.name) {
+    currentName.value = item.name
+    router.push(item.url)
+  }
 }
 function toIndex() {
-  router.push('/blog')
+  router.push('/admin/blog')
 }
 
 const list = [
@@ -56,37 +62,24 @@ const list = [
     group: [
       {
         name: '博客管理',
-        url: '/blog'
+        url: '/admin/blog'
       },
       {
-        name: '分类管理',
-        url: '/classify'
+        name: '标签管理',
+        url: '/admin/tags'
       }
     ]
   },
-  // {
-  //   name: '专题',
-  //   group: [
-  //     {
-  //       name: '专题管理',
-  //       url: '/specialTopic'
-  //     }
-  //   ]
-  // },
   {
     name: '设置',
     group: [
       {
         name: '个人信息设置',
-        url: '/myInfo'
-      },
-      {
-        name: '博客成员',
-        url: '/member'
+        url: '/admin/myInfo'
       },
       {
         name: '系统设置',
-        url: '/system'
+        url: '/admin/system'
       }
     ]
   },
@@ -95,7 +88,7 @@ const list = [
     group: [
       {
         name: '回收站',
-        url: '/retrieve'
+        url: '/admin/retrieve'
       }
     ]
   }
