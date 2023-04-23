@@ -25,7 +25,7 @@
           </el-form-item>
           <el-form-item label="颜色">
             <el-color-picker v-model="info.color" :predefine="predefineColors" />
-           <span class="ml-20 color-white" :style="{'background-color': info.color}"> {{ info.color }}</span>
+           <span class="ml-20 color-white" :style="{'background-color': info.color}"> {{ colorRgb }}</span>
           </el-form-item>
           <el-form-item v-if="type == 4" label="简介">
             <el-input v-model="info.name" type="textarea" />
@@ -45,7 +45,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { reactive, ref, computed } from 'vue'
 import { Plus } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
 
@@ -54,6 +54,37 @@ const type = ref(1)
 const info = reactive({
   name: '',
   color: '#22C55E',
+})
+const predefineColors = ref([
+  '#ff4500',
+  '#ff8c00',
+  '#ffd700',
+  '#90ee90',
+  '#00ced1',
+  '#1e90ff',
+  '#c71585',
+  'rgb(255, 120, 0)',
+  'hsv(51, 100, 98)',
+  'hsl(181, 100%, 37%)',
+  '#c7158577'
+])
+const colorToRgb = (color: string) => {
+  if (color[0] === '#') {
+    const number = color.substring(1)
+    const rgbArr = []
+    let i = 0
+    while (i < number.length) {
+      rgbArr.push(Number('0x' + number.substring(i, i + 2)))
+      i += 2
+    }
+    return `rgb(${rgbArr[0]},${rgbArr[1]}, ${rgbArr[2]})`
+  }
+
+  return color
+}
+
+const colorRgb = computed(() => {
+  return colorToRgb(info.color)
 })
 const show = ref(false)
 
@@ -91,6 +122,7 @@ defineExpose({
 const emits = defineEmits(["success", "adit"])
 const success = () => {
   console.log()
+  info.color = colorRgb.value
   emits("success", info)
 }
 

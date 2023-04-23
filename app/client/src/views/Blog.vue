@@ -13,18 +13,18 @@
         <span class="nowrap mr-10">分类</span>
         <el-input v-model="type" placeholder="请输入内容"></el-input>
       </div> -->
-      <el-button plain type="primary">搜索</el-button>
+      <el-button plain type="primary" @click="search()">搜索</el-button>
     </div>
     <div class="mt-20">
-      <el-button type="success" plain @click="() => router.push('/admin/publish')">新建文章</el-button>
+      <el-button type="success" plain @click="() => router.push('/admin/publish')" >新建文章</el-button>
     </div>
 
     <div class="mt-20">
       <el-table :data="list" style="width: 100%">
         <el-table-column prop="title" label="文章标题" width="180"> </el-table-column>
         <el-table-column prop="id" label="id" width="180"> </el-table-column>
-        
-        <el-table-column prop="intro" label="文章简介" width="380"> 
+
+        <el-table-column prop="intro" label="文章简介" width="380">
           <template #default="scope">
             <div class="truncate">
               {{ scope.row.intro }}迪斯科解放和上雕刻技法和四道口附近建设顽皮的散热架上次上课仍可见
@@ -61,14 +61,14 @@
     <div class="mt-20 flex-x-y">
       <el-pagination background layout="prev, pager, next" :total="3"> </el-pagination>
     </div>
-
   </div>
 </template>
 <script setup lang="ts">
 import { reactive, ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import Tag from '@/components/Tag/Tag.vue'
-import { getArticles } from '@/api'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { getArticles, deleteArticle } from '@/api'
 
 const list = ref([])
 
@@ -76,14 +76,16 @@ onMounted(() => {
   getList()
 })
 
-const getList = ()=> {
-  getArticles().then((res) => {
-    if(res.code == 200) {
-      list.value = res.data
-    }
-  }).catch((err) => {
-    console.log(err, 'err')
-  })
+const getList = () => {
+  getArticles()
+    .then((res) => {
+      if (res.code == 200) {
+        list.value = res.data
+      }
+    })
+    .catch((err) => {
+      console.log(err, 'err')
+    })
 }
 
 const router = useRouter()
@@ -91,15 +93,29 @@ const title = ref('')
 const status = ref('')
 const adit = (data) => {
   router.push({
-    path:'/admin/publish',
+    path: '/admin/publish',
     query: {
       id: data.id
     }
   })
 }
 
-const del = (data) => {
-  console.log(data, 'del')
+const del = (row) => {
+  ElMessageBox.confirm('确定删除此文章？', '提示', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning'
+  }).then(() => {
+    deleteArticle(row.id).then((res) => {
+      if (res.code == 200) {
+        list.value = list.value.filter((item) => item.id != row.id)
+        ElMessage({
+          type: 'success',
+          message: `删除成功`
+        })
+      }
+    })
+  })
 }
 </script>
 <style>
@@ -108,15 +124,15 @@ const del = (data) => {
   height: 88px;
 }
 .el-table .cell {
-    box-sizing: border-box;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
-    height: 50px;
-    word-break: break-all;
-    display: flex;
-    align-items: center;
-    padding: 0 12px;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  height: 50px;
+  word-break: break-all;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
 }
 .nowrap {
   white-space: nowrap;

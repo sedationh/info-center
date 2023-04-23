@@ -18,19 +18,18 @@ const props = defineProps({
   }
 })
 
-const emits = defineEmits(["remove"])
+const emits = defineEmits(['remove'])
 const removeTag = () => {
-    emits("remove", props.tag)
+  emits('remove', props.tag)
 }
 const colors = (color: string) => {
-  if(color) {
+  if (color) {
     return {
-    'background-color': color.substring(0, color.length - 1) + ',0.1)',
-    'border-color': color.substring(0, color.length - 1) + ',0.2)',
-    color: color
+      'background-color': color.substring(0, color.length - 1) + ',0.1)',
+      'border-color': color.substring(0, color.length - 1) + ',0.2)',
+      color: color
+    }
   }
-  }
-  
 }
 </script>
 <style>

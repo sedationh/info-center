@@ -23,7 +23,7 @@ const register = ({ username, password }: AuthInfo) =>
   })
 
 const signin = ({ username, password }: AuthInfo) =>
-  request({
+   request({
     url: path + '/signin',
     method: 'post',
     data: {

@@ -40,6 +40,14 @@ import { createTag, getTags } from '@/api'
 
 const tagsList = ref([])
 const list = ref([])
+
+const props = defineProps({
+  list2: {
+    type: Array,
+    default: () => []
+  }
+})
+const list2 = ref([])
 onMounted(() => {
   get()
 })
@@ -51,7 +59,6 @@ const get = () => {
     }
   })
 }
-
 
 const showOptions = ref(false)
 
@@ -101,19 +108,18 @@ const defaultTag = computed(() => {
   }
 })
 
-const addTag = async () => {
+const addTag = () => {
   tagsList.value.push(defaultTag.value)
   createTag({
     name: value.value,
     color: colorRgb.value
   })
-  // console.log(res, 'res')
   list.value = tagsList.value
   selectTag(defaultTag.value)
 }
-
-const list2 = ref([])
-
+setTimeout(() => {
+  list2.value = props.list2 || []
+}, 200);
 const selectTag = (item: Object) => {
   if (list2.value.find((tag) => tag.id === item.id)) {
     list2.value = list2.value.filter((tag) => tag.id !== item.id)

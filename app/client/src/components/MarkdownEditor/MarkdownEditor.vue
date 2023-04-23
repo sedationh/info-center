@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-md-editor v-model="text" :height="height + 'px'" @change="change"></v-md-editor>
+    <v-md-editor v-model="props.modelValue" :height="height + 'px'" @change="change"></v-md-editor>
   </div>
 </template>
 
@@ -19,7 +19,6 @@ VMdEditor.use(githubTheme, {
   Hljs: hljs
 })
 
-const text = ref('')
 const props = defineProps({
   modelValue: {
     type: String,

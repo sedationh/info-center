@@ -18,21 +18,29 @@
           </el-icon>
         </el-upload>
       </el-form-item>
-      <el-form-item label="手机号">
+      <el-form-item label="联系方式">
         <el-input v-model="form.phone" />
       </el-form-item>
-      <el-form-item label="密码">
-        <el-switch v-model="form.password" />
+      <el-form-item label="爱好">
+        <el-input v-model="form.like" />
       </el-form-item>
-      <el-form-item label="默认编辑器">
-        <el-radio-group v-model="form.type" class="ml-4">
-          <el-radio label="1" size="large">富文本编辑器</el-radio>
-          <el-radio label="2" size="large">Markdown编辑器</el-radio>
-        </el-radio-group>
+      <el-form-item label="相册">
+        <el-upload
+          class="avatar-uploader bg-gray-100"
+          action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+          :show-file-list="false"
+          :on-success="handleAvatarSuccess"
+          :before-upload="beforeAvatarUpload"
+        >
+          <img v-if="form.imageUrl" width="178" height="178" :src="form.imageUrl" class="avatar" />
+          <el-icon v-else class="avatar-uploader-icon">
+            <Plus />
+          </el-icon>
+        </el-upload>
       </el-form-item>
     </el-form>
     <div class="ml-40 mt-20">
-      <el-button class="bg-green-500" type="success">Success</el-button>
+      <el-button class="bg-green-500" type="success" style="margin-left: 80px;">编辑</el-button>
     </div>
   </div>
 </template>

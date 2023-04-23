@@ -83,15 +83,15 @@ const list = [
       }
     ]
   },
-  {
-    name: '回收站',
-    group: [
-      {
-        name: '回收站',
-        url: '/admin/retrieve'
-      }
-    ]
-  }
+  // {
+  //   name: '回收站',
+  //   group: [
+  //     {
+  //       name: '回收站',
+  //       url: '/admin/retrieve'
+  //     }
+  //   ]
+  // }
 ]
 </script>
 

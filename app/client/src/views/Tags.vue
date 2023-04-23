@@ -50,7 +50,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, nextTick  } from 'vue'
 import Create from '@/components/Create/Create.vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { aditTag, createTag, deleteTag, getTags } from '@/api'
@@ -98,8 +98,9 @@ const success = (data) => {
     } else {
       newTag(data)
     }
-    createRef.value.close()
     get()
+    tagsList.value.push(data)
+    createRef.value.close()
   }
 }
 const newTag = (data) => {

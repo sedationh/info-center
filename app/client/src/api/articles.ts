@@ -3,20 +3,20 @@ import request from '@/utils/request'
 const path = '/articles'
 
 type ArticlesInfo = {
-  id?:string,
-  title?:string,
-  content?: string,
-  tagIds?:string[]
+  id?: string
+  title?: string
+  content?: string
+  tagIds?: string[]
 }
 const getArticles = () =>
   request({
     url: path
-})
+  })
 
-const createArticle = ({title,content, tagIds}: ArticlesInfo) => {
+const createArticle = ({ title, content, tagIds }: ArticlesInfo) => {
   request({
     url: path,
-    method:'post',
+    method: 'post',
     data: {
       title,
       content,
@@ -26,32 +26,29 @@ const createArticle = ({title,content, tagIds}: ArticlesInfo) => {
 }
 
 const getArticleDeatil = (id: String) => {
-  request({
+  return request({
+    url: path + '/' + id
+  })
+}
+
+const aditArticle = ({ id, title, content, tagIds }: ArticlesInfo) => {
+  return request({
+    url: path,
+    method: 'put',
+    data: {
+      id,
+      title,
+      content,
+      tagIds
+    }
+  })
+}
+
+const deleteArticle = (id: string) => {
+  return request({
     url: path + '/' + id,
-  }).then((res) => {
-    return res
+    method: 'delete'
   })
 }
 
-const aditArticle = ({id}: ArticlesInfo) => {
-  request({
-    url: path,
-    method:'put',
-    data: {
-      id
-    }
-  })
-}
-
-const deleteArticle = ({id}: ArticlesInfo) => {
-  request({
-    url: path,
-    method:'delete',
-    data: {
-      id
-    }
-  })
-}
-
-
-export {getArticles, createArticle, getArticleDeatil, aditArticle, deleteArticle}
+export { getArticles, createArticle, getArticleDeatil, aditArticle, deleteArticle }
