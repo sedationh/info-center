@@ -6,7 +6,10 @@
           <el-form-item label="名称" width="180">
             <el-input v-model="info.name" />
           </el-form-item>
-          <el-form-item v-if="props.type == 3" :label="props.type == 4 ? '头像' : '封面'">
+          <el-form-item v-if="info.id" label="id" width="180">
+            <el-input v-model="info.id" disabled/>
+          </el-form-item>
+          <el-form-item v-if="type == 4" :label="type == 4 ? '头像' : '封面'">
             <el-upload
               class="avatar-uploader bg-gray-100"
               action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
@@ -21,17 +24,17 @@
             </el-upload>
           </el-form-item>
           <el-form-item label="颜色">
-            <el-color-picker v-model="color" :predefine="predefineColors" />
-           <span class="ml-20 color-white" :style="{'background-color': color}"> {{ color }}</span>
+            <el-color-picker v-model="info.color" :predefine="predefineColors" />
+           <span class="ml-20 color-white" :style="{'background-color': info.color}"> {{ info.color }}</span>
           </el-form-item>
-          <el-form-item v-if="props.type == 3" label="简介">
+          <el-form-item v-if="type == 4" label="简介">
             <el-input v-model="info.name" type="textarea" />
           </el-form-item>
           <div class="flex">
             <el-button @click="success()" class="bg-green-500 flex justify-end" type="success">{{
-              type == 1 ? '发布' : '创建'
+              type == 2 ? '创建' : '编辑'
             }}</el-button>
-            <el-button class="bg-green-500 flex justify-end" type="success" @click="show = false"
+            <el-button @click="close()" class="bg-green-500 flex justify-end" type="success"
               >取消</el-button
             >
           </div>
@@ -45,12 +48,8 @@
 import { reactive, ref } from 'vue'
 import { Plus } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
-const props = defineProps({
-  type: {
-    type: Number,
-    default: 1 //   1: 新增文章 2：新增分类 3: 新建专题 4：新增成员
-  }
-})
+
+const type = ref(1)
 
 const info = reactive({
   name: '',
@@ -58,10 +57,17 @@ const info = reactive({
 })
 const show = ref(false)
 
-const title = ref(['新增文章', '新增标签', '新增专题', '新增成员'])
+const title = ref(['新增文章', '新增标签', '编辑标签', '新增成员'])
 
-function open() {
+const open = (data: number, row: Object) => {
+  type.value = data
+  Object.assign(info, row)
+  console.log(info, 'info')
   show.value = true
+}
+const close = () => {
+  console.log('close111111111')
+  show.value = false
 }
 const handleAvatarSuccess = ( uploadFile: any) => {
   info.img = URL.createObjectURL(uploadFile.raw)
@@ -79,12 +85,13 @@ const beforeAvatarUpload = (rawFile: any) => {
 }
 defineExpose({
   open,
-  show
+  show,
+  close
 })
-const emits = defineEmits(["success"])
+const emits = defineEmits(["success", "adit"])
 const success = () => {
   console.log()
-  emits("success", {name: info.name, color: info.color})
+  emits("success", info)
 }
 
 

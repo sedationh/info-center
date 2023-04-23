@@ -31,7 +31,7 @@ const getOneTag = (id: string|number) => {
 }
 
 const aditTag = ({id, name, color}: TagsInfo) => {
-  request({
+  return request({
     url: path,
     method:'put',
     data: {

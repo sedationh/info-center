@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <el-button type="success" plain @click="createClassify()">新增标签</el-button>
+      <el-button type="success" plain @click="open(2)">新增标签</el-button>
     </div>
 
     <div class="mt-20">
@@ -32,7 +32,7 @@
         <el-table-column prop="operate" label="操作">
           <template #default="scope">
             <div>
-              <span class="mr-10 hover:text-green-500 cursor-pointer" @click="editTag(scope.row)"
+              <span class="mr-10 hover:text-green-500 cursor-pointer" @click="open(3, scope.row)"
                 >编辑</span
               >
               <span class="hover:text-green-500 cursor-pointer" @click="delTag(scope.row)"
@@ -46,17 +46,16 @@
     <div class="mt-20 flex-x-y">
       <el-pagination background layout="prev, pager, next" :total="3"> </el-pagination>
     </div>
-    <Create :type="2" ref="createRef"></Create>
+    <Create ref="createRef" @success="success"></Create>
   </div>
 </template>
 <script setup lang="ts">
-import { reactive, ref, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import Create from '@/components/Create/Create.vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { createTag, deleteTag, getOneTag, getTags } from '@/api'
+import { aditTag, createTag, deleteTag, getTags } from '@/api'
 
 const tagsList = ref([])
-const list = ref([])
 onMounted(() => {
   get()
 })
@@ -67,26 +66,8 @@ const get = () => {
     }
   })
 }
-function createClassify() {
-  console.log('新建一个文章')
-  createRef.value.open({
-    name: '名称',
-    color: '#22C55E',
-    right: '创建',
-    success: ()=> {
-      createTag({
-        name: name,
-        color: color
-      }).then(res => {
-        if(res.code == 200) {
-          console.log(res)
-        }
-      })
-    }
-  })
-}
-function editTag(row) {
-  console.log(row)
+const open = (num: number, row: number) => {
+  createRef.value.open(num, row)
 }
 const delTag = (row) => {
   ElMessageBox.confirm('确定删除此标签？', '提示', {
@@ -95,7 +76,6 @@ const delTag = (row) => {
     type: 'warning'
   }).then(() => {
     deleteTag(row.id).then((res) => {
-      console.log(res, 'res')
       if (res.code == 200) {
         tagsList.value = tagsList.value.filter((item) => item.id != row.id)
         ElMessage({
@@ -104,6 +84,49 @@ const delTag = (row) => {
         })
       }
     })
+  })
+}
+const success = (data) => {
+  if (!data.name || !data.color) {
+    ElMessage({
+      message: '请填写正确的名称和颜色',
+      type: 'warning'
+    })
+  } else {
+    if (data.id) {
+      aditTag1(data)
+    } else {
+      newTag(data)
+    }
+    createRef.value.close()
+    get()
+  }
+}
+const newTag = (data) => {
+  createTag({
+    name: data.name,
+    color: data.color
+  }).then((res) => {
+    if (res.code == 200) {
+      ElMessage({
+        message: '创建标签成功',
+        type: 'success'
+      })
+    }
+  })
+}
+const aditTag1 = (data) => {
+  aditTag({
+    name: data.name,
+    color: data.color,
+    id: data.id
+  }).then((res) => {
+    if (res.code == 200) {
+      ElMessage({
+        message: '修改标签成功',
+        type: 'success'
+      })
+    }
   })
 }
 const createRef = ref()
