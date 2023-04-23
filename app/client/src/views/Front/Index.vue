@@ -3,7 +3,14 @@
     <div class="bg-white py-30">
       <div class="main-w m-auto flex justify-between items-center">
         <div class="flex">
-          <div @click="open('blogList')" class="mr-20 pointer">logo</div>
+          <div
+          
+          
+          
+          
+          
+          
+          class="mr-20 pointer">logo</div>
           <!-- <div @click="open('blogList')" class="mr-20 pointer">博客</div> -->
           <div @click="open('tagList')" class="pointer">标签分类</div>
         </div>

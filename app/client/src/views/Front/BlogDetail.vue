@@ -1,10 +1,9 @@
 <template>
   <div class=" bg-white mt-20 p-20 rounded-md shadow-dark-50 " style="min-height: 700px;">
-    <h1 v-if="info.title" class="text-3xl "> {{ info.title }}</h1>
-    <div v-if="info.intro" class="mt-20"> {{ info.intro }}</div>
+    <h1 v-if="title" class="text-3xl "> {{ title }}</h1>
     <div class="mt-20 mb-20">
-      <span v-if="info.time" class="mr-20 text-gray-400 text-sm"> 时间： {{ info.time }}</span>
-      <span v-for="item in info.tags" :key="item.id" class="mr-10">
+      <span v-if="time" class="mr-20 text-gray-400 text-sm"> 时间： {{ time }}</span>
+      <span  v-for="item in tags" :key="item.id" @click="selectTag(item)" class="mr-10">
         <Tag :tag="item"></Tag>
       </span>
     </div>
@@ -16,8 +15,7 @@
 <script setup lang="ts">
 import { getArticleDeatil } from '@/api';
 import { onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router';
-import {data as blogList} from '@/data/blogList'
+import { useRoute, useRouter } from 'vue-router';
 import Tag from '@/components/Tag/Tag.vue';
 import { marked } from 'marked'
 import "github-markdown-css"
@@ -38,6 +36,11 @@ marked.setOptions({
 const route = useRoute();
 
 let id = ''
+
+const title = ref('')
+const time = ref('')
+const tags = ref([])
+const content = ref('')
 onMounted(() => {
     // 打印
     console.log('route:', route.query)
@@ -47,12 +50,19 @@ onMounted(() => {
     }
 
 })
-const info = ref({})
-const content = ref('')
-const aa = ref('')
 const getInfo = (id: String) => {
-    info.value = blogList.find(value => value.id == id)
-    content.value = marked(info.value.content[0])
+    getArticleDeatil(id).then((res) => {
+      if(res.code == 200) {
+        title.value = res.data.title
+        time.value = res.data.updatedAt
+        tags.value = res.data.tags
+        content.value = marked(res.data.content)
+      }
+    })
+}
+const router = useRouter()
+const selectTag = (tag) => {
+  router.push('/index/tagList?tagId='+ tag.id)
 }
 </script>
 

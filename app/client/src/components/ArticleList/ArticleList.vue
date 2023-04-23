@@ -8,9 +8,9 @@
       :class="[index == 0 ? '' : 'mt-20', index < list.length - 1 ? 'border-b-2' : '']"
     >
       <div class="font-bold">{{ item.title }}</div>
-      <div class="mt-20 text-gray-400">{{ item.intro }}</div>
+      <div class="mt-20 text-gray-400 overflow-ellipsis overflow-hidden ">{{ item.content }}</div>
       <div class="text-xs mt-20 flex items-center">
-        <span class="mr-20">{{ item.time }}</span>
+        <span class="mr-20">{{ item.updatedAt }}</span>
         <span class="mr-20" v-if="item.name"> 作者： {{ item.name }}</span>
         <span class="mr-10" v-for="tag in item.tags" :key="tag.id" @click.stop="selectTag(tag)">
           <Tag :tag="tag"></Tag>
