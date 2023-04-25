@@ -1,15 +1,9 @@
 <template>
   <div class=" ">
-    <div class="bg-white py-30">
+    <div class="bg-white py-20 bg-opacity-40 ">
       <div class="main-w m-auto flex justify-between items-center">
         <div class="flex">
           <div
-          
-          
-          
-          
-          
-          
           class="mr-20 pointer">logo</div>
           <!-- <div @click="open('blogList')" class="mr-20 pointer">博客</div> -->
           <div @click="open('tagList')" class="pointer">标签分类</div>
@@ -41,7 +35,7 @@ function open(name: string) {
 
 <style>
 body {
-  background-color: #f4f4f4;
+  background: linear-gradient(90deg, rgba(254,201,252,0.6306897759103641) 0%, rgba(168,250,255,1) 73%, rgba(57,245,186,0.7707457983193278) 100%);
 }
 .main-w {
   width: 80%;

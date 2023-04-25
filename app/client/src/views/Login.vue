@@ -1,6 +1,6 @@
 <template>
   <div class="login-bg relative">
-    <div class="flex justify-center">
+    <div class="flex justify-center items-center h-full">
       <el-form ref="ruleFormRef" :model="ruleForm" status-icon :rules="rules" class="form">
         <div class="login">login</div>
         <el-form-item label="账号" prop="id">
@@ -9,9 +9,7 @@
         <el-form-item label="密码" prop="password" class="text-pink-500">
           <el-input v-model="ruleForm.password" type="password" autocomplete="off" />
         </el-form-item>
-        <div class="flex items-center justify-around ">
-          <!-- <button class="px-20 py-5 rounded-lg border  text-white hover:bg-pink-400 hover:border-pink-400 " @click="login()">登录</button>
-          <button @click="signup()" class="px-20 py-5 rounded-lg border  text-white hover:bg-pink-400 hover:border-pink-400 ">注册</button> -->
+        <div class="flex items-center justify-around mb-40 mt-40">
           <el-button class="text-white" plain @click="login()">登录</el-button>
           <el-button class="text-white" plain @click="signup()">注册</el-button>
         </div>
@@ -90,13 +88,12 @@ body {
   height: 100vh;
 }
 .form {
-  width: 300px;
-  padding: 40px 20px;
+  width: 500px;
+  /* height: 300px; */
+  padding: 40px 80px;
   border-radius: 20px;
   color: #e61065;
-  position: absolute;
-  right: 5%;
-  top: 15%;
+  margin: auto;
   background: rgba(255, 255, 255, 0.3);
   box-shadow: inset -13px 13px 92px #fbb1cf, inset 13px -13px 92px #fff1ff;
 }
@@ -104,11 +101,17 @@ body {
 .login {
   width: 100%;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
+  margin-top: 20px;
 }
 .login-bg {
-  background: url('@/static/11.jpg') no-repeat center/100% 100%;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
+  background: linear-gradient(
+    90deg,
+    rgba(254, 201, 252, 0.6306897759103641) 0%,
+    rgba(168, 250, 255, 1) 73%,
+    rgba(57, 245, 186, 0.7707457983193278) 100%
+  );
 }
 </style>

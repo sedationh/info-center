@@ -8,7 +8,7 @@
       :class="[index == 0 ? '' : 'mt-20', index < list.length - 1 ? 'border-b-2' : '']"
     >
       <div class="font-bold">{{ item.title }}</div>
-      <div class="mt-20 text-gray-400 overflow-ellipsis overflow-hidden ">{{ item.content }}</div>
+      <div class="mt-20 text-gray-400 overflow-ellipsis overflow-hidden " v-html="item.content"></div>
       <div class="text-xs mt-20 flex items-center">
         <span class="mr-20">{{ item.updatedAt }}</span>
         <span class="mr-20" v-if="item.name"> 作者： {{ item.name }}</span>
@@ -44,8 +44,6 @@ const emits = defineEmits(["selectTag"])
 
 
 const selectTag = (item: object) => {
-  console.log(item)
-//   router.push('/index/tagList?tagId=' + item.id)
     emits("selectTag", item)
 }
 </script>

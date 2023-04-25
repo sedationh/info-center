@@ -26,7 +26,7 @@
             </el-menu>
           </el-aside>
           <el-main style="background-color: #fff; margin: 20px; border-radius: 10px">
-            <div style="min-height: 600px">
+            <div style="min-height: 600px; max-height: 700px;">
               <RouterView></RouterView>
             </div>
           </el-main>

@@ -2,7 +2,7 @@
   <div>
     <div class="mb-20 flex justify-between">
       <div @click="() => router.push('/admin/blog')">返回</div>
-      <div @click="publish()">{{route.query.id?"编辑":"发布"}}</div>
+      <div @click="publish()">{{ route.query.id ? '编辑' : '发布' }}</div>
     </div>
     <div class="mb-20">
       <span>设置标题</span>
@@ -15,7 +15,6 @@
     <div class="mt-20">
       <MarkdownEditor v-model="markdeonContent" :height="500"></MarkdownEditor>
     </div>
-    {{ markdeonContent }}
   </div>
 </template>
 
@@ -49,6 +48,20 @@ const getDetail = async (id) => {
 }
 const tagIdList = ref([])
 const publish = () => {
+  if (!title.value) {
+    ElMessage({
+      message: '标题不能为空',
+      type: 'error'
+    })
+    return
+  }
+  if (!markdeonContent.value) {
+    ElMessage({
+      message: '文章内容不能为空',
+      type: 'error'
+    })
+    return
+  }
   if (route.query.id) {
     aditArticle({
       id: route.query.id,
@@ -56,20 +69,31 @@ const publish = () => {
       content: markdeonContent.value,
       tagIds: tagIdList.value
     }).then((res) => {
+      if (res.code !== 200) return
       ElMessage({
-      message: '编辑成功',
-      type: 'success'
+        message: '编辑成功',
+        type: 'success'
+      })
+      setTimeout(() => {
+        router.go(-1)
+      }, 1000)
     })
-    })
-  }
-  else {
+  } else {
     createArticle({
-    title: title.value,
-    content: markdeonContent.value,
-    tagIds: tagIdList.value
-  })
+      title: title.value,
+      content: markdeonContent.value,
+      tagIds: tagIdList.value
+    }).then((res) => {
+      if (res.code !== 200) return
+      ElMessage({
+        message: '发布成功',
+        type: 'success'
+      })
+      setTimeout(() => {
+        router.go(-1)
+      }, 1000)
+    })
   }
-  
 }
 
 const getTags1 = (data: Object[]) => {

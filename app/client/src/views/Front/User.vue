@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white mt-20 p-20 rounded-md shadow-dark-50" style="min-height: 700px">
+  <div class="bg-white bg-opacity-40 mt-20 p-20 rounded-md shadow-dark-50" style="min-height: 700px">
     <div>
       <div class="w-28 h-28 ml-20 mt-20">      
         <el-image
@@ -12,9 +12,9 @@
         />
       </div>
     </div>
-    <!-- <div class="mt-40" @click.stop="toLogin()">
+    <div class="mt-40" @click.stop="toLogin()">
         登录
-    </div> -->
+    </div>
     <div class="mt-40 ml-40">
       <span class="mr-20">昵称</span>
       <span class=" text-xl">一只可爱</span>

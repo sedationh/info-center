@@ -1,5 +1,5 @@
 <template>
-  <div class=" bg-white mt-20 p-20 rounded-md shadow-dark-50 " style="min-height: 700px;">
+  <div class=" bg-white bg-opacity-40 mt-20 p-20 rounded-md shadow-dark-50 " style="min-height: 700px;">
     <h1 v-if="title" class="text-3xl "> {{ title }}</h1>
     <div class="mt-20 mb-20">
       <span v-if="time" class="mr-20 text-gray-400 text-sm"> 时间： {{ time }}</span>
@@ -7,7 +7,7 @@
         <Tag :tag="item"></Tag>
       </span>
     </div>
-    <div v-html="content" class="markdown-body w-full mt-20"></div>
+    <div v-html="content" class="markdown-body w-full mt-20 " style="background-color: rgba(0, 0, 0, 0);"></div>
     <!-- <v-md-editor :model-value="content" mode="preview"></v-md-editor> -->
   </div>
 </template>

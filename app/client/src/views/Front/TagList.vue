@@ -1,16 +1,17 @@
 <template>
-  <div class="bg-white mt-20 p-20 rounded-md shadow-dark-50" style="min-height: 700px">
+  <div
+    class="bg-white bg-opacity-40 mt-20 p-20 rounded-md shadow-dark-50"
+    style="min-height: 700px"
+  >
     <div class="flex items-center justify-center w-full">
-      <div
-        class="flex items-center justify-start border-1 border-gray-300 w-2/4 px-20 rounded-md py-1"
-      >
+      <div class="flex bg-white items-center justify-start w-2/4 px-20 rounded-md py-1 input-bg">
         <div v-if="selected" class="my-2">
           <Tag :tag="currentTag" :remove="true" @remove="remove()"></Tag>
         </div>
         <input
           v-else
           v-model="searchValue"
-          class="m-2 w-2/4 outline-none"
+          class="m-2 w-2/4 outline-none bg-opacity-0"
           placeholder="搜索标签"
           @change="searchTag()"
         />
@@ -33,7 +34,6 @@ import ArticleList from '@/components/ArticleList/ArticleList.vue'
 import { onMounted, ref } from 'vue'
 import { getArticles, getOneTag, getTags } from '@/api'
 import { useRoute } from 'vue-router'
-
 const currentTag = ref({})
 
 const searchValue = ref('')
@@ -42,16 +42,6 @@ const list = ref([])
 const articleList = ref([])
 
 onMounted(() => {
-  if (route.query.tagId) {
-    getOneTag(route.query.tagId).then((res) => {
-      if (res.code == 200) {
-        currentTag.value = res.data
-        articleList.value = blogList.value.filter((item) => {
-          return item.tags.find((tag) => tag.id == currentTag.value.id)
-        })
-      }
-    })
-  }
   get()
 })
 
@@ -97,10 +87,30 @@ const get = () => {
   getArticles().then((res) => {
     if (res.code == 200) {
       blogList.value = res.data
+      blogList.value.forEach((item) => {
+        item.content = item.content
+          .split('\n')
+          .map((e) => e.replace(/#|```/g, ''))
+          .toString().replace(/,/g, '')
+      })
       articleList.value = blogList.value
     }
   })
+  if (route.query.tagId) {
+    console.log(list.value, 'list')
+    getOneTag(route.query.tagId).then((res) => {
+      if(res.code != 200) return 
+      currentTag.value = res.data
+      articleList.value = blogList.value.filter((item) => {
+        return item.tags.find((tag) => tag.id == currentTag.value.id)
+      })
+    })
+  }
 }
 </script>
 
-<style></style>
+<style>
+.input-bg {
+  background-color: #fff;
+}
+</style>

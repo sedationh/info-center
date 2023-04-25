@@ -1,6 +1,17 @@
 <template>
   <div>
-    <div>
+    <div class="flex items-center">
+      <div class="flex justify-center items-center nowrap mr-20">
+        <span class="nowrap mr-10 whitespace-nowrap">名称</span>
+        <el-input v-model="title" placeholder="请输入名称"></el-input>
+      </div>
+      <div class="flex justify-center items-center nowrap mr-20">
+        <span class="nowrap mr-10">id</span>
+        <el-input v-model="status" placeholder="请输入id"></el-input>
+      </div>
+      <el-button plain type="primary" @click="search()">搜索</el-button>
+    </div>
+    <div class="mt-20">
       <el-button type="success" plain @click="open(2)">新增标签</el-button>
     </div>
 
@@ -43,9 +54,6 @@
         </el-table-column>
       </el-table>
     </div>
-    <div class="mt-20 flex-x-y">
-      <el-pagination background layout="prev, pager, next" :total="3"> </el-pagination>
-    </div>
     <Create ref="createRef" @success="success"></Create>
   </div>
 </template>
@@ -56,13 +64,15 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { aditTag, createTag, deleteTag, getTags } from '@/api'
 
 const tagsList = ref([])
+const list = ref([])
 onMounted(() => {
   get()
 })
 const get = () => {
   getTags().then((res) => {
     if (res.code == 200) {
-      tagsList.value = res.data
+      list.value = res.data
+      tagsList.value = list.value
     }
   })
 }
@@ -77,7 +87,7 @@ const delTag = (row) => {
   }).then(() => {
     deleteTag(row.id).then((res) => {
       if (res.code == 200) {
-        tagsList.value = tagsList.value.filter((item) => item.id != row.id)
+        tagsList.value = list.value.filter((item) => item.id != row.id)
         ElMessage({
           type: 'success',
           message: `删除成功`
@@ -129,6 +139,16 @@ const aditTag1 = (data) => {
       })
     }
   })
+}
+
+const title = ref('')
+const status = ref('')
+
+const search = () => {
+  if(!title.value.trim() && !status.value.trim()) {
+    tagsList.value = list.value
+  }
+  tagsList.value = list.value.filter(item => item.name.includes(title.value) && (item.id == status.value || !status.value))
 }
 const createRef = ref()
 </script>

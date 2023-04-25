@@ -14,7 +14,7 @@ const getArticles = () =>
   })
 
 const createArticle = ({ title, content, tagIds }: ArticlesInfo) => {
-  request({
+  return request({
     url: path,
     method: 'post',
     data: {
