@@ -40,7 +40,13 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="updatedAt" label="时间"> </el-table-column>
+        <el-table-column prop="updatedAt" label="时间">
+          <template #default="scope">
+            <div>
+              {{ transfromTime(scope.row.updatedAt) }}
+            </div>
+          </template>
+           </el-table-column>
         <el-table-column prop="operate" label="操作">
           <template #default="scope">
             <div>
@@ -60,6 +66,7 @@ import { useRouter } from 'vue-router'
 import Tag from '@/components/Tag/Tag.vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getArticles, deleteArticle } from '@/api'
+import {transfromTime} from '@/utils/time'
 
 const list = ref([])
 const blogList = ref([])

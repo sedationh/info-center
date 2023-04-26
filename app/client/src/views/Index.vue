@@ -93,6 +93,8 @@ const list = [
   //   ]
   // }
 ]
+
+
 </script>
 
 <style scoped>

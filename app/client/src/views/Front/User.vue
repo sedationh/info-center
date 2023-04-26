@@ -12,9 +12,9 @@
         />
       </div>
     </div>
-    <div class="mt-40" @click.stop="toLogin()">
+    <!-- <div class="mt-40" @click.stop="toLogin()">
         登录
-    </div>
+    </div> -->
     <div class="mt-40 ml-40">
       <span class="mr-20">昵称</span>
       <span class=" text-xl">一只可爱</span>

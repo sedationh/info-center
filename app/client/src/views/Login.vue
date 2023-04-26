@@ -23,7 +23,9 @@ import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { signin, register, hasUserRegistered } from '@/api'
+import { useUserStore } from '@/stores/user'
 const router = useRouter()
+const store = useUserStore()
 const ruleForm = reactive({
   id: '',
   password: ''
@@ -48,12 +50,14 @@ const login = async () => {
     password: ruleForm.password
   })
     .then(() => {
+      store.setStatus(true)
       router.push('/admin')
     })
     .catch((err) => {
       ElMessage.error('账号或密码不正确')
     })
 }
+
 
 const signup = async () => {
   if (await hasUser()) {
@@ -72,10 +76,12 @@ const signup = async () => {
     password: ruleForm.password
   })
   if (res.data) {
+    store.setStatus(true)
     ElMessage({
       message: '注册成功， 即将跳转',
       type: 'success'
     })
+
     setTimeout(() => {
       router.push('/admin')
     }, 2000)

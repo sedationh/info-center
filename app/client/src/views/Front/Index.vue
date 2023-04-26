@@ -25,12 +25,16 @@
 </template>
 
 <script setup lang="ts">
+import { useUserStore } from '@/stores/user'
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
 function open(name: string) {
     router.push('/index/'+name)
 }
+const store = useUserStore()
+console.log(store, 'store')
+
 </script>
 
 <style>

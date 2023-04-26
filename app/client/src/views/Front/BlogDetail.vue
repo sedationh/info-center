@@ -42,8 +42,6 @@ const time = ref('')
 const tags = ref([])
 const content = ref('')
 onMounted(() => {
-    // 打印
-    console.log('route:', route.query)
     if(route.query) {
       id = route.query.id
       getInfo(id)

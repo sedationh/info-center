@@ -1,4 +1,6 @@
+import { useUserStore } from '@/stores/user'
 import { createRouter, createWebHistory } from 'vue-router'
+
 const routes = [
   {
     path: '',
@@ -6,7 +8,7 @@ const routes = [
   },
   {
     path: '/1',
-    component: () => import('@/views/1.vue'),
+    component: () => import('@/views/1.vue')
   },
   {
     name: 'index',
@@ -96,4 +98,12 @@ const router = createRouter({
   history: createWebHistory()
 })
 
+router.beforeEach((to, from) => {
+  const store = useUserStore()
+  if (to.path.includes('/admin') && !store.isUserSet) {
+    return {
+      path: '/login'
+    }
+  }
+})
 export default router
