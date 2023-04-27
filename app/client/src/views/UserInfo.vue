@@ -2,79 +2,70 @@
   <div class="w-50% mt-20">
     <el-form :model="form" label-width="120px">
       <el-form-item label="昵称">
-        <el-input v-model="form.name" />
+        <el-input v-model="form.nickname" />
       </el-form-item>
       <el-form-item label="头像">
-        <el-upload
-          class="avatar-uploader bg-gray-100"
-          action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-          :show-file-list="false"
-          :on-success="handleAvatarSuccess"
-          :before-upload="beforeAvatarUpload"
-        >
-          <img v-if="form.imageUrl" width="178" height="178" :src="form.imageUrl" class="avatar" />
-          <el-icon v-else class="avatar-uploader-icon">
-            <Plus />
-          </el-icon>
-        </el-upload>
+        <ImageUpload :type="1" v-model="avatar"></ImageUpload>
       </el-form-item>
       <el-form-item label="联系方式">
         <el-input v-model="form.phone" />
       </el-form-item>
       <el-form-item label="爱好">
-        <el-input v-model="form.like" />
+        <el-input v-model="form.hobby" />
       </el-form-item>
-      <el-form-item label="相册">
-        <el-upload
-          class="avatar-uploader bg-gray-100"
-          action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-          :show-file-list="false"
-          :on-success="handleAvatarSuccess"
-          :before-upload="beforeAvatarUpload"
-        >
-          <img v-if="form.imageUrl" width="178" height="178" :src="form.imageUrl" class="avatar" />
-          <el-icon v-else class="avatar-uploader-icon">
-            <Plus />
-          </el-icon>
-        </el-upload>
+      <el-form-item label="上传图片">
+        <ImageUpload :type="2" v-model="album"></ImageUpload>
       </el-form-item>
     </el-form>
     <div class="ml-40 mt-20">
-      <el-button class="bg-green-500" type="success" style="margin-left: 80px;">编辑</el-button>
+      <el-button @click="submitInfo()" class="bg-green-500" type="success" style="margin-left: 80px"
+        >编辑</el-button
+      >
     </div>
   </div>
 </template>
 
-<script setup>
-import { reactive } from 'vue'
-import { ref } from 'vue'
+<script setup lang="ts">
+import { ref, onMounted, reactive } from 'vue'
+import ImageUpload from '@/components/ImagsUpload/ImagsUpload.vue'
 import { ElMessage } from 'element-plus'
-import { Plus } from '@element-plus/icons-vue'
-const handleAvatarSuccess = (response, uploadFile) => {
-  form.imageUrl = URL.createObjectURL(uploadFile.raw)
-}
-
-const beforeAvatarUpload = (rawFile) => {
-  if (rawFile.type !== 'image/jpeg') {
-    ElMessage.error('Avatar picture must be JPG format!')
-    return false
-  } else if (rawFile.size / 1024 / 1024 > 2) {
-    ElMessage.error('Avatar picture size can not exceed 2MB!')
-    return false
-  }
-  return true
-}
+import { getUserInfo, aditUserInfo } from '@/api'
 
 const form = reactive({
-  name: '',
+  nickname: '',
   phone: '',
-  password: '',
-  imageUrl: '',
-  type: 1
+  hobby: ''
 })
 
-const onSubmit = () => {
-  console.log('submit!')
+const avatar = ref(['blob:http://127.0.0.1:5173/283fe03c-11f5-4056-bf04-5ab11d47c3ca'])
+const album = ref(['blob:http://127.0.0.1:5173/283fe03c-11f5-4056-bf04-5ab11d47c3ca'])
+onMounted(async () => {
+  const res = await getUserInfo()
+  console.log(res, 'res')
+  form.nickname = res.data.nickname
+  form.phone = res.data.phone
+  form.hobby = res.data.hobby
+})
+console.log(avatar, 'form.avatar')
+const submitInfo = () => {
+  if(!form.nickname) {
+    return ElMessage.error('请输入昵称')
+  }
+  if(!form.phone) {
+    return ElMessage.error('请输入联系方式')
+  }
+  if(!form.hobby) {
+    return ElMessage.error('请输入爱好')
+  }
+  aditUserInfo({
+    nickname: form.nickname,
+    phone: form.phone,
+    hobby: form.hobby,
+    avatar: avatar.value[0],
+    album: album.value.join('&')
+  }).then(res => {
+    console.log(res, 'res')
+  })
 }
 </script>
 <style scoped>

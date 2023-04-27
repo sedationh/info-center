@@ -51,6 +51,9 @@ const login = async () => {
   })
     .then(() => {
       store.setStatus(true)
+      localStorage.setItem('isLogin', 'true')
+      //q: 怎么将登陆状态写入缓存
+
       router.push('/admin')
     })
     .catch((err) => {
@@ -77,6 +80,7 @@ const signup = async () => {
   })
   if (res.data) {
     store.setStatus(true)
+    localStorage.setItem('isLogin', 'true')
     ElMessage({
       message: '注册成功， 即将跳转',
       type: 'success'
