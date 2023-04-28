@@ -51,20 +51,23 @@ const props = defineProps({
 })
 const imgList = ref(props.modelValue)
 const imageUrl = ref('')
+const imgHead = "http://47.113.180.18:4000/images/"
 const emits = defineEmits(['update:modelValue'])
 
 const handleAvatarSuccess: UploadProps['onSuccess'] = (response, uploadFile) => {
-  imageUrl.value = URL.createObjectURL(uploadFile.raw!)
+  imageUrl.value = imgHead + response.data
+
   if (props.type === 1) {
     imgList.value.pop()
   }
+
   imgList.value.push(imageUrl.value)
   emits('update:modelValue', imgList.value)
 }
 
 const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
-  if (rawFile.size / 1024 / 1024 > 2) {
-    ElMessage.error('图片大小不超过2MB!')
+  if (rawFile.size / 1024 / 1024 > 10) {
+    ElMessage.error('图片大小不超过10MB!')
     return false
   }
   return true
@@ -74,6 +77,7 @@ const removeImg = (item) => {
   imgList.value.splice(index, 1)
   emits('update:modelValue', imgList.value)
 }
+
 </script>
 <style>
 .avatar-uploader .el-upload {

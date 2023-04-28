@@ -30,9 +30,9 @@
     <div class="mt-40 ml-40">
       <span class="mr-20">相册</span>
       <div class="mt-20 flex flex-wrap">
-        <div v-for="(item, index) in info.album" :key="index" class="w-30% mr-10 mb-10">
+        <div v-for="(item, index) in info.album" :key="index" class="mr-10 mb-10">
           <el-image
-            style="width: 100%"
+            style="width: 180px; height: 180px;"
             :src="item"
             :zoom-rate="1.2"
             :preview-src-list="info.album"
@@ -53,6 +53,7 @@ const info = reactive({})
 onMounted(async () => {
   const res = await getUserInfo()
   if (res.code == 200) {
+    res.data.album = res.data.album.split('&')
     Object.assign(info, res.data)
   }
 })
