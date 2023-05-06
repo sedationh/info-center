@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-white bg-opacity-40 mt-20 p-20 rounded-md shadow-dark-50"
+    class="bg-white bg-opacity-40 mt-20 p-20 rounded-md shadow-dark-50 relative"
     style="min-height: 700px"
   >
     <div>
@@ -42,6 +42,9 @@
         </div>
       </div>
     </div>
+    <div class="to-login" @click.stop="toLogin()">
+      登录
+    </div>
   </div>
 </template>
 <script setup lang="ts">
@@ -57,4 +60,22 @@ onMounted(async () => {
     Object.assign(info, res.data)
   }
 })
+const toLogin = () => {
+  window.location.href = '/login'
+}
 </script>
+<style>
+.to-login {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #92c2f1;
+  color: #fff;
+  cursor: pointer;
+}
+.to-login:hover {
+  background-color: #55a1f3;
+}
+</style>

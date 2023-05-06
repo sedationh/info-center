@@ -1,5 +1,5 @@
 <template>
-  <span class="px-10 py-5 text-xs rounded-md border-1 overflow-hidden m-5" :style="colors(props.tag.color)">
+  <span class="px-10 py-5 text-xs rounded-md border-1 overflow-hidden m-5 cursor-pointer" :style="colors(props.tag.color)">
     <span class=" whitespace-nowrap  overflow-hidden">{{ props.tag.name }}</span>
     <span></span>
     <span v-if="props.remove" @click.stop="removeTag()" class="iconfont icon-cuo ml-5"></span>

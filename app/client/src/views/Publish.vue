@@ -2,7 +2,7 @@
   <div>
     <div class="mb-20 flex justify-between">
       <div @click="() => router.push('/admin/blog')">返回</div>
-      <div @click="publish()">{{ route.query.id ? '编辑' : '发布' }}</div>
+      <div @click="publish()" class="cursor-pointer">{{ route.query.id ? '编辑' : '发布' }}</div>
     </div>
     <div class="mb-20">
       <span>设置标题</span>

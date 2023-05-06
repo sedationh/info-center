@@ -27,6 +27,8 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/user'
 import { useRouter } from 'vue-router';
+import { getUserInfo } from '@/api'
+import { onMounted } from 'vue'
 
 const router = useRouter()
 function open(name: string) {
@@ -34,6 +36,13 @@ function open(name: string) {
 }
 const store = useUserStore()
 console.log(store, 'store')
+
+onMounted(async () => {
+  const res = await getUserInfo()
+  if (res.code == 200) {
+    store.setUserInfo(res.data)
+  }
+})
 
 </script>
 

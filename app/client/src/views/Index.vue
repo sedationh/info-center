@@ -3,7 +3,7 @@
     <div class="common-layout">
       <el-container>
         <el-header class="flex justify-between bg-white items-center">
-          <div @click="toIndex()">easyblog</div>
+          <div @click="toIndex()">logo</div>
           <div>欢迎</div>
         </el-header>
         <el-container>
@@ -77,10 +77,10 @@ const list = [
         name: '个人信息设置',
         url: '/admin/myInfo'
       },
-      {
-        name: '系统设置',
-        url: '/admin/system'
-      }
+      // {
+      //   name: '系统设置',
+      //   url: '/admin/system'
+      // }
     ]
   },
   // {

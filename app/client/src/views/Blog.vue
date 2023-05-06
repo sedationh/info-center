@@ -33,13 +33,13 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="status" label="状态" width="80">
+        <!-- <el-table-column prop="status" label="状态" width="80">
           <template #default="scope">
             <div>
               {{ scope.row.status == 0 ? '草稿' : scope.row.status == 1 ? '已发布' : '已删除' }}
             </div>
           </template>
-        </el-table-column>
+        </el-table-column> -->
         <el-table-column prop="updatedAt" label="时间">
           <template #default="scope">
             <div>
@@ -78,7 +78,7 @@ const getList = () => {
   getArticles()
     .then((res) => {
       if (res.code == 200) {
-        blogList.value = res.data
+        blogList.value = res.data.reverse()
         blogList.value.forEach((item) => {
         item.content = item.content
           .split('\n')

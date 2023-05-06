@@ -78,7 +78,16 @@ const remove = () => {
   ininList('')
 }
 
-const get = () => {
+const get = async () => {
+  if (route.query.tagId) {
+    console.log(list.value, 'list')
+    const res = await getOneTag(route.query.tagId)
+    if (res.code != 200) return
+      currentTag.value = res.data
+      articleList.value = blogList.value.filter((item) => {
+        return item.tags.find((tag) => tag.id == currentTag.value.id)
+      })
+  }
   getTags().then((res) => {
     if (res.code == 200) {
       list.value = res.data
@@ -86,28 +95,19 @@ const get = () => {
   })
   getArticles().then((res) => {
     if (res.code == 200) {
-      blogList.value = res.data
+      blogList.value = res.data.reverse()
       blogList.value.forEach((item) => {
         item.content = item.content
           .split('\n')
           .map((e) => e.replace(/#|```/g, ''))
-          .toString().replace(/,/g, '')
+          .toString()
+          .replace(/,/g, '')
       })
       articleList.value = blogList.value
     }
   })
-  if (route.query.tagId) {
-    console.log(list.value, 'list')
-    getOneTag(route.query.tagId).then((res) => {
-      if(res.code != 200) return 
-      currentTag.value = res.data
-      articleList.value = blogList.value.filter((item) => {
-        return item.tags.find((tag) => tag.id == currentTag.value.id)
-      })
-    })
-  }
+  
 }
-
 </script>
 
 <style>
