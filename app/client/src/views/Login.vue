@@ -52,6 +52,7 @@ const login = async () => {
     .then(() => {
       store.setStatus(true)
       localStorage.setItem('isLogin', 'true')
+      console.log(localStorage.getItem('isLogin'),store.isUserSet ,'isLogin')
       //q: 怎么将登陆状态写入缓存
 
       router.push('/admin')

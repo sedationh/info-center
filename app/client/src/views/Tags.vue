@@ -15,18 +15,18 @@
       <el-button type="success" plain @click="open(2)">新增标签</el-button>
     </div>
 
-    <div class="mt-20">
+    <div class="mt-20" style="height: 480px;overflow-y: auto;">
       <el-table :data="tagsList" style="width: 100%">
-        <el-table-column prop="name" label="名称" width="180"> </el-table-column>
-        <el-table-column prop="id" label="id" width="180"> </el-table-column>
-        <el-table-column prop="color" label="颜色" width="180">
+        <el-table-column prop="name" label="名称" width="300"> </el-table-column>
+        <el-table-column prop="id" label="id" width="300"> </el-table-column>
+        <el-table-column prop="color" label="颜色" width="500">
           <template #default="scope">
             <div class="text-white" :style="{ 'background-color': scope.row.color }">
               {{ scope.row.color }}
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="id" label="相关文章id">
+        <!-- <el-table-column prop="id" label="相关文章id">
           <template #default="scope">
             <div>
               <el-tooltip
@@ -39,8 +39,8 @@
               </el-tooltip>
             </div>
           </template>
-        </el-table-column>
-        <el-table-column prop="operate" label="操作">
+        </el-table-column> -->
+        <el-table-column prop="operate" label="操作" width="500">
           <template #default="scope">
             <div>
               <span class="mr-10 hover:text-green-500 cursor-pointer" @click="open(3, scope.row)"

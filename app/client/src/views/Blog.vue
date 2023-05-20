@@ -15,9 +15,9 @@
       <el-button type="success" plain @click="() => router.push('/admin/publish')" >新建文章</el-button>
     </div>
 
-    <div class="mt-20">
+    <div class="mt-20" style="height: 480px;overflow-y: auto;">
       <el-table :data="list" style="width: 100%">
-        <el-table-column prop="title" label="文章标题" width="180"> </el-table-column>
+        <el-table-column prop="title" label="文章标题"> </el-table-column>
         <el-table-column prop="id" label="id" width="80"> </el-table-column>
         <el-table-column prop="content" label="内容" width="380">
           <template #default="scope">

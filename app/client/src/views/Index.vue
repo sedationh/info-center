@@ -25,11 +25,13 @@
               </el-sub-menu>
             </el-menu>
           </el-aside>
-          <el-main style="background-color: #fff; margin: 20px; border-radius: 10px">
-            <div style="min-height: 600px; max-height: 700px;">
+          <div style="width: 100%;padding-top: 20px;">
+            <el-main style="background-color: #fff; border-radius: 10px">
+            <div style="max-height: 700px;">
               <RouterView></RouterView>
             </div>
           </el-main>
+          </div>
         </el-container>
       </el-container>
     </div>
